@@ -1,0 +1,77 @@
+@media print {
+  body {
+    margin: 0 5mm;
+    -webkit-print-color-adjust: exact;
+  }
+
+  table.invoice-print-table {
+    height:100%;
+    width:100%;
+    border-collapse:collapse;
+    td {
+      vertical-align:top
+    }
+    thead {
+      display: table-header-group;
+      td.spacer {
+        height: 9mm;
+      }
+    }
+    tfoot {
+      display: table-footer-group;
+      td.spacer {
+        height: 9mm;
+      }
+    }
+  }
+
+  .invoice {
+    .invoice-header {
+      font-size: 11px;
+      margin-top: 8mm;
+      border-bottom: 1pt solid $secondary-color;
+    }
+    .invoice-body {
+      font-size: 11px;
+      padding: unset;
+      .jobs-table, .parts-table {
+        font-size: 11px;
+      }
+      .parts-table {
+        .table-body {
+          .table-row {
+            .table-data {
+              color: $default-font-color-light !important;
+              &.details {
+                .name {
+                  color: $default-font-color-light !important;
+                }
+              }
+            }
+          }
+        }
+      }
+      .invoice-price-table {
+        padding: 5px;
+        table {
+          margin-bottom: 5px !important;
+          font-size: 11px;
+          tr.commission {
+            button {
+              visibility: hidden;
+            }
+            &.p-hidden {
+              display: none;
+            }
+          }
+          tr.grand-total {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .invoice-footer {
+      border-top: 1pt solid $secondary-color;
+    }
+  }
+}

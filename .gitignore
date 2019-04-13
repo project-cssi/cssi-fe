@@ -1,3 +1,10 @@
+node_modules
+ncp-debug.log
+npm-debug.log
+bower_component
+
+.DS_STORE
+
 # VSCode
 .vscode/*
 !.vscode/settings.json
@@ -7,9 +14,12 @@
 
 # Other IDEs and editors
 .idea/
+*.iml
 *.swp
 .project
 .classpath
 .c9/
 *.launch
 .settings/
+*.sublime-project
+*.sublime-workspace

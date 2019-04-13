@@ -1,0 +1,810 @@
+.invoice-sliding-pane-overlay {
+  background-color: $invoice-sliding-pane-overlay-bg-color !important;
+  z-index: $invoice-sliding-pane-z-index;
+
+  .invoice-sliding-pane {
+    width: $invoice-sliding-pane-width !important;
+    height: $invoice-sliding-pane-height !important;
+    margin-top: $invoice-sliding-pane-margin-top !important;
+    @include box-shadow(unset);
+    border-left: $invoice-sliding-pane-border-left !important;
+    .slide-pane__content {
+      padding: 0 !important;
+    }
+  }
+}
+
+.invoice-sliding-pane-header {
+  .title {
+    font-size: 15px;
+    padding: 7px 0;
+  }
+}
+
+.invoice-sliding-pane-body {
+  .nav-tabs {
+    > li.active > a {
+      background-color: $smoke-bg;
+    }
+  }
+  .tab-content {
+    background-color: $smoke-bg;
+    border-bottom: $cssi-tabstrip-border-bottom;
+    padding: 0 !important;
+    .tab-pane {
+      padding: 0 !important;
+      .receipts-table-container {
+        max-height: 200px;
+        overflow: auto;
+        .table {
+          margin-bottom: unset;
+          > thead > tr > th {
+            font-weight: 600 !important;
+            font-size: 11px;
+            color: $default-font-color;
+          }
+          > tbody {
+            > tr {
+              &:hover {
+                cursor: pointer;
+                background-color: $light-gray;
+              }
+              > td {
+                font-size: 13px;
+                color: $default-font-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .invoice-details-page {
+    margin: 35px auto;
+    max-width: 820px;
+    @include box-shadow(0 0 6px $light-gray);
+  }
+  .make-payment {
+    padding: 10px 15px;
+    .payment-summary-table {
+      margin: 15px 0;
+      .table {
+        margin-bottom: unset;
+        > tbody {
+          > tr {
+            border: 1px solid $medium-gray;
+            > th {
+              width: 40%;
+              color: $default-font-color;
+              background-color: $lighter-gray !important;
+              font-weight: 600;
+            }
+            > td {
+              font-size: 13px;
+              color: $default-font-color;
+            }
+          }
+        }
+      }
+    }
+    .hint {
+      margin: 20px 0;
+      color: $default-color-bottom;
+    }
+  }
+}
+
+.form-dropdown {
+  margin: 0 15px 15px 15px;
+  z-index: 99999;
+  background-color: $form-dropdown-bg;
+  right: 0;
+  top: 100%;
+  @include box-shadow(0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1));
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.2s;
+
+  &.absolute {
+    position: absolute;
+
+    &.invoice-addon {
+      top: unset;
+      right: unset;
+      margin-top: 10px;
+      margin-left: -5px;
+    }
+  }
+
+  &.full-size {
+    width: 90%;
+  }
+
+  &.xs {
+    width: 20%;
+  }
+
+  &.sm {
+    width: 30%;
+  }
+
+  &.relative {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .form-header {
+    text-align: right;
+    padding: 5px;
+  }
+
+  .form-content {
+    padding: 15px 20px;
+
+    p {
+      font-size: 12px;
+      color: $form-helper-color;
+    }
+  }
+
+  .form-footer {
+    &.buttons {
+      text-align: center;
+
+      &.inline {
+        margin-bottom: 10px;
+        button {
+          margin: 0 3px;
+        }
+      }
+    }
+  }
+}
+
+.form {
+   .form-footer {
+     &.buttons {
+       &.inline {
+         margin-bottom: 10px;
+         &.align-left {
+           button {
+             margin-right: 5px;
+           }
+         }
+         &.align-right {
+           button {
+             margin-left: 5px;
+           }
+         }
+       }
+     }
+   }
+ }
+
+.custom-modal {
+  margin: 0 auto;
+  &.full {
+    width: 100%;
+  }
+  &.medium {
+    width: 65%;
+  }
+}
+.print-button {
+  text-align: right;
+  padding: 15px 20px;
+}
+
+.invoice {
+  padding: 1% 4%;
+  .invoice-print-table {
+    width: 100%;
+  }
+  .invoice-header {
+    margin: 5px 0 0;
+    padding: 0 0 15px 0;
+    border-bottom: 3pt solid $secondary-color;
+    .company-info {
+      display: inline-flex;
+      align-items: center;
+      .logo {
+        max-width: 30%;
+        max-height: 90px;
+        float: left;
+        margin-right: 15px;
+      }
+      .address {
+        max-width: 70%;
+        float: right;
+        .company-name {
+          display: inline-block;
+          font-weight: 600;
+          font-size: 22px;
+        }
+      }
+    }
+    .company-contact {
+      padding: 0 10px;
+    }
+    .invoice-info {
+      text-align: right;
+      .title {
+        font-size: 36px;
+        text-transform: uppercase;
+      }
+      .id {
+        font-size: 15px;
+      }
+      .date {
+        font-size: 12px;
+      }
+    }
+  }
+  .invoice-body {
+    padding: 15px 0 0 0;
+    .meta {
+      h6 {
+        text-decoration: underline;
+        text-transform: uppercase;
+      }
+      .invoice-details, .vehicle-details {
+        .key {
+          width: 40%;
+          display: inline-block;
+          font-weight: 500;
+        }
+        .value {
+          width: 60%;
+          display: inline-block;
+        }
+      }
+    }
+    .jobs-table, .parts-table {
+      .table-head {
+        display: flex;
+        > div {
+          float: left;
+          padding: 8px 10px;
+          font-size: 12px;
+          text-transform: uppercase;
+          background-color: $lighter-gray !important;
+          border-right: 1px solid $medium-gray;
+          border-bottom: 1px solid $medium-gray;
+          color: $color-black;
+          font-weight: 600;
+          &:last-child {
+            border-right: 0 solid transparent;
+          }
+        }
+      }
+      .table-body {
+        .table-row {
+          display: flex;
+          min-height: 42px;
+          .table-data {
+            float: left;
+            padding: 5px 10px;
+          }
+        }
+      }
+    }
+    .jobs-table {
+      border: 1px solid $medium-gray;
+      .table-head {
+        > div {
+          &.number {
+            width: 10%;
+          }
+          &.details {
+            width: 50%;
+          }
+          &.rate {
+            width: 20%;
+          }
+          &.amount {
+            width: 20%;
+          }
+        }
+      }
+      .table-body {
+        .table-item {
+          border-bottom: 1px solid $medium-gray;
+          &:last-child {
+            border-bottom: 0 solid transparent;
+          }
+          .table-row {
+            .table-data {
+              &.number {
+                width: 10%;
+                border-right: 1px solid $medium-gray;
+              }
+              &.details {
+                width: 50%;
+                border-right: 1px solid $medium-gray;
+                .name {
+                  font-size: 14px;
+                  word-break: break-word;
+                }
+                .description {
+                  font-size: 10px;
+                }
+              }
+              &.rate {
+                width: 20%;
+                border-right: 1px solid $medium-gray;
+              }
+              &.amount {
+                width: 20%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .parts-table {
+      color: $default-font-color-light !important;
+      .table-head {
+        > div {
+          font-size: 10px;
+          &.number {
+            width: 10%;
+          }
+          &.details {
+            width: 50%;
+          }
+          &.rate {
+            width: 20%;
+          }
+          &.amount {
+            width: 20%;
+          }
+        }
+      }
+      .table-body {
+        .table-row {
+          min-height: 25px !important;
+          .table-data {
+            padding: 2px 10px;
+            &.number {
+              width: 10%;
+            }
+            &.details {
+              width: 50%;
+              padding-left: 25px;
+              .name {
+                font-size: 14px;
+              }
+              .description {
+                font-size: 10px;
+              }
+            }
+            &.rate {
+              width: 20%;
+            }
+            &.amount {
+              width: 20%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .invoice-number {
+    font-size: 16px;
+    span {
+      font-size: 12px;
+    }
+  }
+  .invoice-footer {
+    margin: 0 0 5px 0;
+    padding: 5px 0 0 0;
+    border-top: 3pt solid $secondary-color;
+    .terms {
+      h6 {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: unset;
+        margin-bottom: 5px;
+      }
+      p {
+        font-size: 10px;
+        line-height: unset;
+      }
+    }
+    .contact-info {
+      text-align: center;
+      h6 {
+        margin-bottom: 0;
+        font-size: 10px;
+        color: $form-helper-color;
+      }
+      p {
+        font-size: 10px;
+      }
+      .width-12 {
+        width: 100%;
+        display: inline-block;
+      }
+      .width-6 {
+        width: 50%;
+        display: inline-block;
+      }
+      .width-4 {
+        width: 33%;
+        display: inline-block;
+      }
+      .width-3 {
+        width: 25%;
+        display: inline-block;
+      }
+      .width-2 {
+        width: 20%;
+        display: inline-block;
+      }
+      .width-1 {
+        width: 10%;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.invoice-price-table {
+  padding: 20px 5px;
+  .table th, .table td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid transparent;
+  }
+  .table th {
+    text-align: right;
+    font-weight: unset;
+  }
+  .table td {
+    text-align: right;
+    font-weight: unset;
+  }
+  .commission {
+    button {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  .grand-total{
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .invoice-field-addon {
+    display: block;
+    cursor: pointer;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    margin-left: -4px;
+    font-weight: 500;
+    color: $secondary-color;
+  }
+}
+
+.all-receipts-view, .payments-view {
+  padding: 5px 30px;
+  .title {
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 5px 0 0;
+    padding: 0 0 15px 0;
+    border-bottom: 3pt solid $secondary-color;
+  }
+}
+
+.create-invoice-jobs-table {
+  .jobs-table-header {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 5px 0 20px 0;
+    text-transform: uppercase;
+  }
+
+  table.job-table {
+    border-collapse:separate;
+    border-spacing:0 7px;
+    thead {
+      th {
+        border-bottom-color: transparent !important;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: $dark-gray;
+      }
+    }
+    tbody {
+      > tr {
+        background-color: $lighter-gray;
+        box-shadow: 0 1px 2px darken($light-gray, 2);
+        &:hover {
+          cursor: pointer;
+          background-color: darken($lighter-gray, 2);
+        }
+        > td {
+          padding: 5px 10px;
+          border-color: transparent !important;
+          height: 35px;
+        }
+        .actions {
+          i {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  .jobs-table, .parts-table {
+    .table-head {
+      height: 40px;
+      > div {
+        float: left;
+        padding: 12px 10px 8px 10px;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: $dark-gray;
+      }
+    }
+    .table-body {
+      .table-row {
+        display: flex;
+        margin-bottom: 10px;
+        background-color: $lighter-gray;
+        box-shadow: 0 1px 2px darken($light-gray, 2);
+        border-left: 3px solid transparent;
+        &:hover {
+          cursor: pointer;
+          background-color: darken($lighter-gray, 2);
+        }
+        .table-data {
+          float: left;
+          height: 42px;
+          padding: 11px 10px;
+          &.actions {
+            i {
+              font-size: 16px;
+            }
+          }
+          .form-control {
+            height: 30px;
+            padding: 5px 12px;
+          }
+        }
+      }
+    }
+  }
+  .jobs-table {
+    .table-head {
+      > div {
+        &.number {
+          width: 10%;
+        }
+        &.name {
+          width: 20%;
+        }
+        &.description {
+          width: 30%;
+        }
+        &.rate {
+          width: 25%;
+        }
+        &.actions {
+          width: 15%;
+        }
+      }
+    }
+    .table-body {
+      .table-row {
+        border-left-color: $color-green;
+        .table-data {
+          &.number {
+            width: 10%;
+          }
+          &.name {
+            width: 20%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+          &.description {
+            width: 30%;
+            padding: 6px;
+          }
+          &.rate {
+            width: 25%;
+            padding: 6px;
+          }
+          &.actions {
+            width: 15%;
+          }
+        }
+      }
+    }
+  }
+  .parts-table {
+    margin-left: 50px;
+    .table-head {
+      > div {
+        font-size: 10px;
+        &.quantity {
+          width: 10%;
+        }
+        &.name {
+          width: 40%;
+        }
+        &.type {
+          width: 20%;
+        }
+        &.rate {
+          width: 20%;
+        }
+        &.actions {
+          width: 10%;
+        }
+      }
+    }
+    .table-body {
+      margin-bottom: 20px;
+      .table-row {
+        font-size: 12px;
+        border-left-color: $color-orange;
+        .table-data {
+          height: 35px;
+          padding: 10px 10px;
+          &.quantity {
+            width: 10%;
+            padding: 6px;
+          }
+          &.name {
+            width: 40%;
+          }
+          &.type {
+            width: 20%;
+          }
+          &.rate {
+            width: 20%;
+          }
+          &.actions {
+            width: 10%;
+            i {
+              font-size: 12px;
+            }
+          }
+          .form-control {
+            width: 60%;
+            height: 23px;
+            padding: 3px 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.invoice-history {
+  padding: 15px 20px 5px 20px;
+  max-height: 200px;
+  overflow: auto;
+  .amount-due {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    span {
+      color: $color-red;
+      margin: 0 10px;
+    }
+  }
+  .timeline {
+    font-size: 13px;
+  }
+  .history-list {
+    padding-left: 0;
+    list-style: none;
+    > li {
+      position: relative;
+      .date-section {
+        width: 140px;
+        padding-right: 10px;
+        padding-top: 5px;
+        .date {
+          color: #879697;
+          font-size: 11px;
+        }
+      }
+      .action-section {
+        width: calc(100% - 140px);
+        .action {
+          .pull-left {
+            margin-right: 10px;
+          }
+          &:first-child {
+            margin-top: 0;
+          }
+          .action-icon {
+            background: #F6FBFF;
+            border-color: #D3DCE4;
+            position: relative;
+            z-index: 2;
+            &.circle-box {
+              border: 1px solid #EEE;
+              border-radius: 50%;
+              height: 25px;
+              width: 25px;
+              text-align: center;
+              line-height: 1.7;
+            }
+            .icon-created {
+              margin-top: -5px;
+              margin-right: -2px;
+              width: 12px;
+              height: 12px;
+            }
+            .icon-marked {
+              margin-top: -5px;
+              margin-right: -2px;
+            }
+            .icon-payment {
+              margin-top: -2px;
+              margin-right: -4px;
+              width: 16px;
+              height: 16px;
+            }
+          }
+          .action-body {
+            font-size: 13px;
+            .action-comment {
+              padding-top: 2px;
+              .description {
+                white-space: pre-wrap;
+                margin-right: 5px;
+              }
+              .creator {
+                font-size: 12px;
+                color: #777;
+                margin-bottom: 5px;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+      .clearfix {
+        &:before {
+          content: " ";
+          display: table;
+        }
+      }
+      &:before {
+        content: '';
+        border-left: 1px solid #E4E4E4;
+        position: absolute;
+        left: 153px;
+        top: 0;
+        bottom: 0;
+      }
+      &:last-child:before {
+        bottom: 100%;
+      }
+    }
+  }
+}

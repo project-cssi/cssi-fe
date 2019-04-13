@@ -1,0 +1,337 @@
+#loader {
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  @include transform-translate-y(-50%);
+  text-align: center;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  top: 50%;
+}
+
+.main-panel-maps {
+  > div {
+    height: 100%;
+  }
+
+  .map {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 60px);
+  }
+}
+
+body,
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+body {
+  background-color: $smoke-bg;
+}
+
+a {
+  color: $info-color;
+
+  &:hover,
+  &:focus {
+    color: $info-states-color;
+    text-decoration: none;
+  }
+}
+
+a:focus,
+a:active,
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+input[type='reset']::-moz-focus-inner,
+input[type='button']::-moz-focus-inner,
+input[type='submit']::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type='file'] > input[type='button']::-moz-focus-inner {
+  outline: 0;
+}
+
+.ui-slider-handle:focus,
+.navbar-toggle,
+input:focus {
+  outline: 0 !important;
+}
+
+/*           Animations              */
+
+.animation-transition-general {
+  @include transition($general-transition-time, $transition-linear);
+}
+
+.animation-transition-fast,
+.sidebar .nav .collapse a > span,
+.sidebar .sidebar-wrapper > .nav p,
+.sidebar .user .info > a > span,
+.sidebar .logo a.logo-normal,
+.sidebar .user .info .collapse .nav a > span {
+  @include transition($fast-transition-time, $transition-linear);
+}
+
+.animation-transition-ultra-fast {
+  @include transition($ultra-fast-transition-time, $transition-ease-in);
+}
+
+.form-control,
+.input-group-addon,
+.tagsinput,
+.navbar .alert,
+.panel-collapse.collapse-hover {
+  @include transition($general-transition-time, $transition-linear);
+}
+
+.sidebar .nav a,
+.table > tbody > tr .td-actions .btn,
+.caret {
+  @include transition($fast-transition-time, $transition-ease-in);
+}
+
+.btn {
+  @include transition($ultra-fast-transition-time, $transition-ease-in);
+}
+
+.fa {
+  width: 18px;
+  text-align: center;
+}
+
+.margin-top {
+  margin-top: 50px;
+}
+
+a[aria-selected='true'][aria-expanded='true'] .caret,
+a[data-toggle='collapse'][aria-expanded='true'] .caret,
+.btn[data-toggle='collapse'][aria-expanded='true'] .caret,
+a.dropdown-toggle[aria-expanded='true'] .caret,
+.rotate-180 {
+  @include rotate-180();
+}
+
+legend {
+  font-size: $font-size-h4;
+  font-weight: $font-weight-light;
+}
+
+.full-screen-map {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 60px);
+}
+
+#loader {
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  @include transform-translate-y(-50%);
+  text-align: center;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  top: 50%;
+}
+
+.no-data {
+  text-align: center;
+  padding: 10px 20px;
+  &.table {
+    img {
+      width: 100px;
+    }
+    h5 {
+      margin-bottom: 5px;
+    }
+    p {
+      font-size: 10px;
+    }
+  }
+}
+
+.hr {
+  border-top: 1px solid #8c8b8b;
+  margin: 20px 0;
+  &.no-margin {
+    margin: unset;
+  }
+  &.gradient {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  }
+  &.light {
+    border-color: #e2e2e2;
+  }
+}
+
+/***********************************************************************/
+/*                                                                     */
+/*                      Style Overrides                                */
+/*                                                                     */
+/***********************************************************************/
+
+/* 1. DataTables.net Styles */
+.dataTables_paginate {
+  &.paging_full_numbers {
+    ul {
+      li {
+        a {
+          border-radius: 0 !important;
+        }
+        &.active {
+          a {
+            background: $button-primary-background !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 3. Sliding Pane */
+.slide-pane__overlay {
+  .slide-pane {
+    .slide-pane__header {
+      height: $sliding-pane-header-height !important;
+      //flex: unset !important;
+      background-color: $sliding-pane-header-bg-color !important;
+      .slide-pane__title-wrapper {
+        margin: 0 15px !important;
+        .slide-pane__title {
+          max-width: 100% !important;
+        }
+      }
+      .slide-pane__close {
+        display: none !important;
+      }
+    }
+  }
+}
+
+/* 4. Bootstrap Tabs */
+.nav-tabs {
+  border-bottom: $cssi-tabstrip-border-bottom !important;
+  > li > a {
+    margin-right: 0 !important;
+    border-radius: 0 !important;
+    line-height: 1.42857143;
+    color: $default-lighter-font-color;
+    border-top: $cssi-tabs-border-top !important;
+    border-bottom: $cssi-tabs-border-bottom !important;
+    padding: 10px 20px;
+    &:hover {
+      border-color: transparent !important;
+      color: $default-font-color-highlight;
+    }
+  }
+  > li.active > a {
+    color: $default-font-color;
+    border-top: $cssi-tabs-border-top-active !important;
+    border-right: $cssi-tabs-border-right-left !important;
+    border-bottom: $cssi-tabs-border-bottom !important;
+    border-left: $cssi-tabs-border-right-left !important;
+  }
+}
+
+/* 5. Sweet Alerts */
+.cssi-sweet-alert {
+  h2 {
+    font-size: 20px !important;
+  }
+  .lead {
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  button {
+    padding: 5px 10px !important;
+  }
+}
+
+/* 6. Bootstrap Jombotron */
+.jumbotron {
+  background: linear-gradient(to right, $secondary-color, $tertiary-color);
+  color: white;
+  padding: 25px 30px;
+  margin-bottom: 10px;
+  p {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  .welcome-message-lg {
+    display: block;
+  }
+  .welcome-message-sm {
+    display: none;
+    h3 {
+      font-size: $font-size-xl;
+      margin: 0;
+      padding: 5px 0;
+    }
+  }
+  &.retracted {
+    max-height: 130px;
+    padding: 14px 20px;
+    .welcome-message-lg {
+      display: none;
+    }
+    .welcome-message-sm {
+      display: block;
+    }
+  }
+}
+
+/* 7. Bootstrap */
+.dropdown-menu {
+  // Hide caret
+  &::before {
+    display: none !important;
+  }
+  &::after {
+    display: none !important;
+  }
+}
+
+/* 8. React tooltip */
+.__react_component_tooltip {
+  padding: 4px 5px;
+  font-size: 10px;
+  &.type-dark {
+    background-color: $tooltip-bg-color;
+    &.place-bottom:after {
+      border-bottom-color: $tooltip-bg-color;
+    }
+  }
+  &.place-bottom:after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    margin-left: -5px;
+  }
+}
+
+/* 9. React Multi-Select */
+.Select--multi {
+  .Select-value-label {
+    max-width: 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

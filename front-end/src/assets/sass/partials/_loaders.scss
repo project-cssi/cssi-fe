@@ -1,0 +1,22 @@
+@import 'node_modules/loaders.css/src/animations/ball-beat.scss';
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+  position: absolute;
+  top: $cssi-loader-top;
+  left: $cssi-loader-left;
+  z-index: $cssi-loader-z-index;
+  &:before{
+    content: '';
+    display: block;
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: $cssi-loader-overlay-bg-color;
+  }
+}

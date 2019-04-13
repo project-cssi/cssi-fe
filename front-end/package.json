@@ -1,0 +1,82 @@
+{
+  "name": "cssi-frontend",
+  "version": "0.1.0",
+  "description": "React front-end for the CSSI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brionmario/cssi.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "author": "Brion Mario",
+  "sasslintConfig": "./sass-lint.yml",
+  "dependencies": {
+    "@types/react": "^16.3.6",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "datatables.net-bs": "^1.10.16",
+    "datatables.net-responsive": "^2.2.1",
+    "font-awesome": "^4.7.0",
+    "history": "^4.7.2",
+    "html2pdf.js": "^0.9.0",
+    "jquery": "^3.3.1",
+    "keymirror": "^0.1.1",
+    "loaders.css": "^0.1.2",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.6.2",
+    "query-string": "~5.1.1",
+    "react": "^16.8.4",
+    "react-bootstrap": "^0.32.1",
+    "react-bootstrap-sweetalert": "^4.4.1",
+    "react-dom": "^16.8.4",
+    "react-dropzone": "^5.1.0",
+    "react-loaders": "^3.0.1",
+    "react-notification-system": "^0.2.17",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "2.1.8",
+    "react-select": "^1.2.1",
+    "react-sliding-pane": "^2.0.2",
+    "react-tooltip": "^3.6.1",
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0",
+    "semver": "^5.5.1",
+    "sha256": "^0.2.0",
+    "uniqid": "^5.0.3",
+    "universal-cookie": "^2.1.5",
+    "uuid": "^3.3.2",
+    "validator": "^10.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "redux-devtools-extension": "^2.13.5",
+    "sass-lint": "^1.12.1"
+  },
+  "keywords": [
+    "cybersickness",
+    "vr",
+    "ar",
+    "mr",
+    "qa",
+    "latency"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint:sass": "sass-lint --config ./sass-lint.yml '**/*.scss' --verbose --no-exit",
+    "lint": "npm run lint:sass",
+    "semver": "npm version $(semver $npm_package_version -i $release --preid $preid)",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

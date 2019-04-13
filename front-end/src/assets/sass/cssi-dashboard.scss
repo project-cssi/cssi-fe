@@ -1,0 +1,74 @@
+/*!
+ =========================================================
+
+ * CSSI Dashboard - Version 0.1.0
+
+ =========================================================
+ * GitHub Repo: https://github.com/brionmario/cssi
+ =========================================================
+ * Licensed under MIT
+ */
+
+// variables, Colors and mixins
+@import 'partials/colors';
+@import 'partials/variables';
+@import 'partials/mixins';
+
+//plugins
+@import 'partials/plugins/animate';
+@import 'partials/plugins/sweetalert2';
+@import 'partials/plugins/jquery.jvectormap';
+@import 'partials/plugins/bootstrap-table';
+@import 'partials/plugins/datatables.net';
+@import 'partials/plugins/chartist';
+@import 'partials/plugins/bootstrap-select';
+@import 'partials/plugins/fixed-plugin';
+@import 'partials/plugins/nouislider';
+@import 'partials/plugins/tags';
+@import 'partials/plugins/_react-bootstrap-switch';
+@import 'partials/plugins/_code-mirror';
+@import 'partials/plugins/_react-simple-maps';
+@import 'partials/plugins/_react-stepzilla';
+@import 'partials/plugins/_react-big-calendar';
+@import 'partials/plugins/_datetime-picker';
+
+// Core CSS
+@import "partials/global";
+@import 'partials/typography';
+@import 'partials/sidebar-and-main-panel';
+@import 'partials/buttons';
+@import 'partials/misc';
+@import 'partials/inputs';
+@import 'partials/progress-bars';
+@import 'partials/sliders';
+@import 'partials/forms';
+@import 'partials/alerts';
+@import 'partials/tables';
+@import 'partials/tooltips-and-popovers';
+@import 'partials/checkbox-radio-switch';
+@import 'partials/navbars';
+@import 'partials/footers';
+@import 'partials/select';
+@import 'partials/modal';
+@import 'partials/invoice';
+@import 'partials/print';
+@import 'partials/loaders';
+
+// Fancy Stuff
+@import 'partials/social-buttons';
+@import 'partials/dropdown';
+@import 'partials/cards';
+@import 'partials/collapse';
+@import 'partials/carousel';
+
+// @import "partials/plugins/datetime-picker";
+
+// SCSS for Pages
+@import 'partials/pages.scss';
+
+//SCSS for Views
+@import 'partials/views';
+
+// Responsive adjustments
+@import 'partials/responsive';
+@import 'partials/tabs-navs-pagination';

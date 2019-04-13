@@ -1,0 +1,91 @@
+// Default Theme: Primary Colors
+$primary-color: #18242c !default;
+$secondary-color: #f16c50 !default;
+$tertiary-color: #b92100 !default;
+$quaternary-color: #f7941d !default;
+
+// Default Theme: Accent Colors
+$accent-color1: #3c8dbc;
+$danger-color: #ff0000;
+
+$default-color: #555 !default;
+
+// Font-Colors
+$default-font-color: #333333;
+$default-font-color-light: rgba(51, 51, 51, 0.7);
+$default-font-color-highlight: #041e43;
+$default-lighter-font-color: #6b6b6b;
+
+// General Colors
+$color-white: #ffffff;
+$color-azure: #23ccef;
+$color-purple: #9368e9;
+$color-red: #fb404b;
+$color-green: #87cb16;
+$color-orange: #ffa534;
+$color-blue: #447df7;
+$color-black: #000000;
+$color-gallery: #eeeeee;
+$color-porcelain: #f1f2f3;
+$color-dark-gray: #494949;
+$color-dusty-gray: #999999;
+
+// Light Colors
+$light-blue: rgba($color-blue, 0.2);
+$light-azure: rgba($color-azure, 0.2);
+$light-green: rgba($color-green, 0.2);
+$light-orange: rgba($color-orange, 0.2);
+$light-red: rgba($color-red, 0.2);
+
+// Tooltip
+$tooltip-bg-color: #596981;
+
+//Theme Dark Colours
+$dark-color-1: #2e2f3f;
+$dark-color-2: #333333;
+$dark-color-3: #4b5163;
+$dark-color-4: #13151a;
+
+// Theme General Colours
+$bg-color: #fbfbfb;
+
+// Gray Colors
+$lighter-gray: #f9f9f9 !default;
+$light-gray: #e3e3e3 !default;
+$medium-gray: #dddddd !default;
+$placeholder-gray: #c3c3c3 !default;
+$medium-dark-gray: #aaaaaa !default;
+$dark-gray: #9a9a9a !default;
+
+// Social
+$facebook-icon-color: #2a61d6;
+$twitter-icon-color: #3aa4f8;
+$google-plus-icon-color: #d34836;
+$instagram-icon-color: #ff9100;
+$youtube-icon-color: #ff5353;
+
+// Notification Colours
+$success-color: #87cb16 !default;
+$warning-color: #ffa534 !default;
+$info-color: #23ccef !default;
+$danger-color: darken(#fb404b, 8%) !default;
+
+// Gradients colors
+$default-color-top: #d9d9d9;
+$default-color-bottom: #909297;
+$blue-color-top: #4087ea;
+$blue-color-bottom: #533ce1;
+$azure-color-top: #45c0fd;
+$azure-color-bottom: #4091ff;
+$green-color-top: #a1eb3a;
+$green-color-bottom: #6dc030;
+$orange-color-top: #ffb33b;
+$orange-color-bottom: #ec1657;
+$red-color-top: #ff3b30;
+$red-color-bottom: #bb0502;
+$purple-color-top: #df55e1;
+$purple-color-bottom: #943bea;
+$pink-color-top: #ff2a63;
+$pink-color-bottom: #ff2e2e;
+$color-black-top: #282828;
+$color-black-bottom: #111;

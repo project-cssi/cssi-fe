@@ -1,0 +1,317 @@
+.btn {
+  border-width: $border-thin;
+  background-color: $transparent-bg;
+  font-weight: $font-weight-bold;
+
+  @include opacity(0.8);
+  padding: $button-padding-y $button-padding-x;
+
+  @include btn-styles($default-color, $default-states-color);
+
+  &:hover,
+  &:focus {
+    @include opacity(1);
+    outline: 0 !important;
+  }
+  &:focus,
+  &:active {
+    @include box-shadow($button-hover-box-shadow);
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    @include box-shadow(none);
+    outline: 0 !important;
+  }
+
+  &.btn-icon {
+    padding: $padding-base-vertical;
+  }
+
+  .btn-label {
+    .fa {
+      width: 13px;
+    }
+  }
+
+  .fa {
+    width: 20px;
+  }
+}
+
+// Apply the mixin to the buttons
+.btn-default {
+  @include btn-styles($default-color, $default-states-color);
+}
+
+.btn-primary {
+  border: 1px solid lighten($button-primary-color1, 10);
+  color: $button-primary-color1;
+  font-weight: 500;
+  transition: filter 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease;
+  transition: filter 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease, -webkit-filter 0.2s ease;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &:active:focus,
+  &:active:hover,
+  &.active:focus,
+  &.active:hover,
+  .open > &.dropdown-toggle {
+    background: $transparent-bg;
+    color: $button-primary-color1;
+    border-color: $button-primary-color1;
+  }
+
+  &.disabled,
+  &:disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background: $button-disabled-bg-color !important;
+      color: $button-disabled-color !important;
+      border: 1px solid $button-disabled-border-color !important;
+      outline: 0;
+    }
+  }
+
+  &.btn-fill {
+    color: $color-white;
+    background: $button-primary-background;
+    border: 1px solid lighten($button-primary-color1, 10);
+    @include opacity(1);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+      background: $button-primary-background;
+      color: $color-white;
+    }
+
+    &:active {
+      @include brightnessFilter(brightness(97%));
+      transition: none;
+    }
+
+    &:focus {
+      outline: 0;
+      border-color: $button-primary-color1;
+      @include box-shadow($button-hover-box-shadow);
+    }
+
+    &:hover {
+      @include brightnessFilter(brightness(105%));
+    }
+
+    .caret {
+      border-top-color: $color-white;
+    }
+  }
+
+  &.btn-fill-gray {
+    color: $color-white;
+    background: $button-gray-background;
+    border: 1px solid lighten($button-gray-color1, 10);
+    @include opacity(1);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+      background: $button-gray-background;
+      color: $color-white;
+    }
+
+    &:active {
+      @include brightnessFilter(brightness(97%));
+      transition: none;
+    }
+
+    &:focus {
+      outline: 0;
+      border-color: $button-gray-color1;
+      @include box-shadow(0 0 0 2px rgba(145, 145, 149, 0.4));
+    }
+
+    &:hover {
+      @include brightnessFilter(brightness(105%));
+    }
+
+    .caret {
+      border-top-color: $color-white;
+    }
+  }
+
+  &.btn-fill-secondary {
+    color: $color-white;
+    background: $button-secondary-background;
+    border: 1px solid lighten($button-secondary-color1, 10);
+    @include opacity(1);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+      background: $button-secondary-background;
+      color: $color-white;
+    }
+
+    &:active {
+      @include brightnessFilter(brightness(97%));
+      transition: none;
+    }
+
+    &:focus {
+      outline: 0;
+      border-color: $button-secondary-color1;
+      @include box-shadow(0 0 0 2px rgba(145, 145, 149, 0.4));
+    }
+
+    &:hover {
+      @include brightnessFilter(brightness(105%));
+    }
+
+    .caret {
+      border-top-color: $color-white;
+    }
+  }
+
+  .caret {
+    border-top-color: $button-primary-color1;
+  }
+}
+
+.btn-success {
+  @include btn-styles($success-color, $success-states-color);
+}
+
+.btn-info {
+  @include btn-styles($info-color, $info-states-color);
+}
+
+.btn-warning {
+  @include btn-styles($warning-color, $warning-states-color);
+}
+
+.btn-danger {
+  @include btn-styles($danger-color, $danger-states-color);
+}
+
+.btn-neutral {
+  @include btn-styles($color-white, $color-white);
+
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-color: $color-white;
+    color: $default-color;
+  }
+
+  &.btn-fill,
+  &.btn-fill:hover,
+  &.btn-fill:focus {
+    color: $default-color;
+  }
+
+  &.btn-fill:hover,
+  &.btn-fill:focus {
+    @include opacity(0.86);
+  }
+
+  &.btn-simple:active,
+  &.btn-simple.active {
+    background-color: transparent;
+  }
+}
+
+.btn {
+  &:disabled,
+  &[disabled],
+  &.disabled {
+    @include opacity(0.5);
+  }
+}
+
+.btn-round {
+  border-width: $border-thin;
+  border-radius: $btn-round-radius !important;
+  padding: $padding-round-vertical $padding-round-horizontal;
+
+  &.btn-icon {
+    padding: $padding-round-vertical;
+  }
+}
+
+.btn-simple {
+  border: $none;
+  font-size: $font-size-medium;
+  padding: $padding-base-vertical $padding-base-horizontal;
+
+  &.btn-icon {
+    padding: $padding-base-vertical;
+  }
+}
+
+.btn-lg {
+  @include btn-size(
+    $padding-large-vertical,
+    $padding-large-horizontal,
+    $font-size-large,
+    $border-radius-large
+  );
+  font-weight: $font-weight-normal;
+}
+
+.btn-sm {
+  @include btn-size(
+    $padding-small-vertical,
+    $padding-small-horizontal,
+    $font-size-small,
+    $border-radius-small
+  );
+}
+
+.btn-xs {
+  @include btn-size(
+    $padding-xs-vertical,
+    $padding-xs-horizontal,
+    $font-size-small,
+    $border-radius-small
+  );
+}
+
+.btn-wd {
+  min-width: 140px;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+.btn-group.select {
+  width: 100%;
+}
+
+.btn-group.select .btn {
+  text-align: left;
+}
+
+.btn-group.select .caret {
+  position: absolute;
+  top: 50%;
+  margin-top: -1px;
+  right: 8px;
+}
