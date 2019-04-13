@@ -1,3 +1,3 @@
-# cssi
+# cssi-fe
 
-A platform for testing VR applications for potential Cybersickness susceptibility
+React front-end for CSSI library

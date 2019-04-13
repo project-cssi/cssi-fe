@@ -1,16 +1,17 @@
-# Contributing to CSSI
+# Contributing to CSSI Front-End
 
-We would love for you to contribute to CSSI platform and help make it even better than it is
+We would love for you to contribute to CSSI API and help make it even better than it is
 today!
 
 ### Type
 
 Must be one of the following:
 
-- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- **ci**: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)
-- **docs**: Documentation only changes
+- **chore**: Updating grunt tasks etc; no production code change
 - **feat**: A new feature
+- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+- **docs**: Documentation only changes
 - **fix**: A bug fix
 - **perf**: A code change that improves performance
 - **refactor**: A code change that neither fixes a bug nor adds a feature
@@ -19,41 +20,27 @@ Must be one of the following:
 
 ### Scope
 
-The scope should be the name of the npm package affected (as perceived by the person reading the changelog generated from commit messages.
+The scope should be the name of the component affected.
 
-The following is the list of supported scopes:
+Follow these `<scope>` values:
 
-- Common
-
-  - **config**
-  - **common**
-  - **vcs**
-
-- For the frontend
-
-  - **scripts**
-  - **assets**
-  - **styles**
-  - **meta**
-  - **components**
-  - **containers**
-  - **elements**
-  - **forms**
-  - **redux**
-  - **routes**
-  - **services**
-  - **utils**
-  - **variables**
-  - **clients**
-  - **dashboard**
-  - **session**
-  - **applications**
-  - **auth**
-  - **settings**
-  - **api**
-
-- For the frontend
-
-  - **core**
-  - **routes**
-  - **migrations**
+- **scripts**
+- **assets**
+- **styles**
+- **meta**
+- **components**
+- **containers**
+- **elements**
+- **forms**
+- **redux**
+- **routes**
+- **services**
+- **utils**
+- **variables**
+- **clients**
+- **dashboard**
+- **session**
+- **applications**
+- **auth**
+- **settings**
+- **api**
