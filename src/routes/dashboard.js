@@ -1,6 +1,7 @@
 import {
   DashboardView,
-  ApplicationsView
+  ApplicationsView,
+  NewSessionView
 } from '../views';
 import testIcon from '../assets/img/icons/test.svg';
 import dashboardIcon from '../assets/img/icons/dashboard.svg';
@@ -14,7 +15,7 @@ const dashboard = [
     path: '/applications', name: 'Applications', icon: hmdIcon, component: ApplicationsView, restrictionLevel: 0,
   },
   {
-    path: '/sessions', name: 'Sessions', icon: testIcon, component: DashboardView, restrictionLevel: 0,
+    path: '/new-session', name: 'New Session', icon: testIcon, component: NewSessionView, restrictionLevel: 0,
   },
   {
     redirect: true, path: '/', pathTo: '/dashboard', name: 'Dashboard', restrictionLevel: 0,
