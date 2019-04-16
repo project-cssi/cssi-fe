@@ -5,71 +5,18 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import $ from 'jquery';
-import moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as dropdownActionCreators from '../../redux/actions/from-dropdown-actions';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
-import Card from '../../components/card/card';
-
-require('datatables.net-responsive');
-$.DataTable = require('datatables.net-bs');
-
-const columns = [
-  {
-    title: 'Invoice #',
-    data: 'number',
-    className: 'row-status',
-    width: '13%',
-  },
-  {
-    title: 'Date',
-    data: 'datetime',
-    width: '16%',
-    render(data) {
-      return moment(data).format('YYYY-MM-DD HH:mm');
-    },
-  },
-  {
-    title: 'Customer',
-    data: 'client.name',
-  },
-  {
-    title: 'Vehicle',
-    data: 'vehicle.registration',
-  },
-  {
-    title: 'Creator',
-    data: 'creator',
-  },
-  {
-    title: 'Status',
-    data: 'status',
-    render(data, type, row) {
-      if (data === 'Complete' && row.settled === true) {
-        return '<span><i class="fa fa fa-circle" style="color: #81d44a"></i>&ensp;Settled</span>';
-      }
-      if (data === 'Complete' && row.settled === false) {
-        return '<span><i class="fa fa fa-circle" style="color: #ffbc67"></i>&ensp;Pending</span>';
-      }
-      return `<span><i class="fa fa fa-circle" style="color: #9f9f9f"></i>&ensp;${data || 'N/A'}</span>`;
-    },
-  },
-  {
-    title: 'Total',
-    data: 'pricing.nett',
-    render(data) {
-      return parseFloat(data).format();
-    },
-  },
-];
+import createAppIcon from '../../assets/img/illustrations/create-app.svg'
+import selectAppIcon from '../../assets/img/illustrations/select-app.svg'
 
 class NewSession extends Component {
 
   render() {
     return (
-      <div className="main-content no-padding">
+      <div className="main-content no-padding new-session-page">
         <Grid fluid>
           <Row>
             <div className="sub-header">
@@ -77,21 +24,40 @@ class NewSession extends Component {
             </div>
           </Row>
           <Row>
-            <div className="content-header transparent">
-              <Col md={12}>
-                <h1>Add Application Metadata</h1>
-              </Col>
+            <div className="new-session-content">
+              <div className="content-description text-center mb-4">
+                <h2>Create a New Testing Session</h2>
+                <h5 className="text-muted font-weight-light">Please select one of the options from bellow and proceed with the session</h5>
+              </div>
+              <div className="grid-card-flex-container">
+                <div className="grid-card md mr-4 ml-4">
+                  <div className="grid-card-thumbnail-container">
+                    <div className="grid-card-thumbnail bg-white mb-1 pt-1 pr-2 pl-2 pb-1">
+                      <img src={createAppIcon}/>
+                    </div>
+                  </div>
+                  <div className="grid-card-content-container text-center">
+                    <div className="grid-card-heading">Create Application</div>
+                    <div className="grid-card-description">
+                      <div className="main">Create a new application with custom metadata.</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid-card md mr-4 ml-4">
+                  <div className="grid-card-thumbnail-container">
+                    <div className="grid-card-thumbnail bg-white mb-1 pt-1 pr-2 pl-2 pb-1">
+                      <img src={selectAppIcon}/>
+                    </div>
+                  </div>
+                  <div className="grid-card-content-container text-center">
+                    <div className="grid-card-heading">Select Existing</div>
+                    <div className="grid-card-description">
+                      <div className="main">Select an application which is already being created.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <Card
-                customCssClass="margin-top"
-                content={
-                  <div></div>
-                }
-              />
-            </Col>
           </Row>
         </Grid>
       </div>
