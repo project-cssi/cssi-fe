@@ -7,8 +7,8 @@ function submit(values, dispatch, props) {
   const body = {
     name: values.name,
     developer: values.developer,
-    type: values.type.value,
-    genre: values.genre.value,
+    type: values.type.value.id,
+    genre: values.genre.value.id,
     description: values.description,
     public_sharing: values.sharing
   };
