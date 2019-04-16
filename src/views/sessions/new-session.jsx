@@ -24,6 +24,11 @@ import {CreateApplicationForm, SelectApplicationForm} from '../../forms';
 
 class NewSession extends Component {
 
+  componentDidMount() {
+    const {actions} = this.props;
+    actions.applications.fetchApplications();
+  }
+
   openModal = (e) => {
     const {actions} = this.props;
     const {modalKey} = e.target.dataset;
@@ -54,8 +59,17 @@ class NewSession extends Component {
 
   render() {
     const {
-      actions, modal, viewConfig, editingApplication,
+      actions, modal, viewConfig, editingApplication, applications
     } = this.props;
+
+    let applicationOptions = null;
+
+    if (applications) {
+      applicationOptions = applications
+        .map(app => (
+          { value: app, label: app.name }
+        ));
+    }
 
     const applicationTypesOptions = [
       {
@@ -189,7 +203,7 @@ class NewSession extends Component {
                   <SelectApplicationForm
                     initialValues={{}}
                     config={viewConfig}
-                    applications={applicationTypesOptions}
+                    applications={applicationOptions}
                   />
                 </ModalBody>
                 <ModalFooter/>
