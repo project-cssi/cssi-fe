@@ -4,6 +4,7 @@ import {
   ADD_APPLICATION,
   EDIT_APPLICATION,
   DELETE_APPLICATION,
+  SET_SELECTED_APPLICATION,
   SET_EDITING_APPLICATION,
   SET_DELETING_APPLICATION,
   SET_APPLICATION_VIEW_CONFIG,
@@ -13,6 +14,7 @@ import {
 const initialState = {
   applications: [],
   newApplication: {},
+  selectedApplication: {},
   editedApplication: {},
   editingApplication: {},
   deletingApplication: {},
@@ -54,6 +56,11 @@ export function applicationReducer(state = initialState, action) {
       return {
         ...state,
         editedApplication: action.payload,
+      };
+    case SET_SELECTED_APPLICATION:
+      return {
+        ...state,
+        selectedApplication: action.payload,
       };
     case SET_DELETING_APPLICATION:
       return {

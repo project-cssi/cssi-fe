@@ -5,71 +5,128 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import $ from 'jquery';
-import moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as dropdownActionCreators from '../../redux/actions/from-dropdown-actions';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
-import Card from '../../components/card/card';
-
-require('datatables.net-responsive');
-$.DataTable = require('datatables.net-bs');
-
-const columns = [
-  {
-    title: 'Invoice #',
-    data: 'number',
-    className: 'row-status',
-    width: '13%',
-  },
-  {
-    title: 'Date',
-    data: 'datetime',
-    width: '16%',
-    render(data) {
-      return moment(data).format('YYYY-MM-DD HH:mm');
-    },
-  },
-  {
-    title: 'Customer',
-    data: 'client.name',
-  },
-  {
-    title: 'Vehicle',
-    data: 'vehicle.registration',
-  },
-  {
-    title: 'Creator',
-    data: 'creator',
-  },
-  {
-    title: 'Status',
-    data: 'status',
-    render(data, type, row) {
-      if (data === 'Complete' && row.settled === true) {
-        return '<span><i class="fa fa fa-circle" style="color: #81d44a"></i>&ensp;Settled</span>';
-      }
-      if (data === 'Complete' && row.settled === false) {
-        return '<span><i class="fa fa fa-circle" style="color: #ffbc67"></i>&ensp;Pending</span>';
-      }
-      return `<span><i class="fa fa fa-circle" style="color: #9f9f9f"></i>&ensp;${data || 'N/A'}</span>`;
-    },
-  },
-  {
-    title: 'Total',
-    data: 'pricing.nett',
-    render(data) {
-      return parseFloat(data).format();
-    },
-  },
-];
+import createAppIcon from '../../assets/img/illustrations/create-app.svg'
+import selectAppIcon from '../../assets/img/illustrations/select-app.svg'
+import * as applicationActionCreators from '../../redux/actions/application-actions';
+import * as modalActionCreators from '../../redux/actions/modal-actions';
+import _ from 'lodash';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from '../../components';
+import {CustomButton as Button} from '../../elements'
+import {CreateApplicationForm, SelectApplicationForm} from '../../forms';
 
 class NewSession extends Component {
 
+  componentDidMount() {
+    const {actions} = this.props;
+    actions.applications.fetchApplications();
+  }
+
+  openModal = (e) => {
+    const {actions} = this.props;
+    const {modalKey} = e.target.dataset;
+    actions.modal.openModal({modalKey});
+  };
+
+  handleApplicationCreate = (e) => {
+    const {actions} = this.props;
+    const config = {
+      title: 'Create New Application',
+      button: 'Create Application',
+      mode: 'create',
+    };
+    actions.applications.setApplicationViewConfig(config);
+    this.openModal(e);
+  };
+
+  handleApplicationSelect = (e) => {
+    const {actions} = this.props;
+    const config = {
+      title: 'Select Existing Application',
+      button: 'Select Application',
+      mode: 'select',
+    };
+    actions.applications.setApplicationViewConfig(config);
+    this.openModal(e);
+  };
+
   render() {
+    const {
+      actions, modal, viewConfig, editingApplication, applications
+    } = this.props;
+
+    let applicationOptions = null;
+
+    if (applications) {
+      applicationOptions = applications
+        .map(app => (
+          { value: app, label: app.name }
+        ));
+    }
+
+    const applicationTypesOptions = [
+      {
+        value: {
+          display_name: 'VR',
+          display_name_full: 'Virtual Reality',
+          id: 1,
+          name: 'vr'
+        }, label: 'Virtual Reality'
+      },
+      {
+        value: {
+          display_name: 'AR',
+          display_name_full: 'Augmented Reality',
+          id: 2,
+          name: 'ar'
+        }, label: 'Augmented Reality'
+      },
+      {
+        value: {
+          display_name: 'MR',
+          display_name_full: 'Mixed Reality',
+          id: 3,
+          name: 'mr'
+        }, label: 'Mixed Reality'
+      },
+    ];
+
+    const genreTypesOptions = [
+      {
+        value: {
+          display_name: 'VR',
+          display_name_full: 'Virtual Reality',
+          id: 1,
+          name: 'vr'
+        }, label: 'Virtual Reality'
+      },
+      {
+        value: {
+          display_name: 'AR',
+          display_name_full: 'Augmented Reality',
+          id: 2,
+          name: 'ar'
+        }, label: 'Augmented Reality'
+      },
+      {
+        value: {
+          display_name: 'MR',
+          display_name_full: 'Mixed Reality',
+          id: 3,
+          name: 'mr'
+        }, label: 'Mixed Reality'
+      },
+    ];
+
     return (
-      <div className="main-content no-padding">
+      <div className="main-content no-padding new-session-page">
         <Grid fluid>
           <Row>
             <div className="sub-header">
@@ -77,21 +134,81 @@ class NewSession extends Component {
             </div>
           </Row>
           <Row>
-            <div className="content-header transparent">
-              <Col md={12}>
-                <h1>Add Application Metadata</h1>
-              </Col>
+            <div className="new-session-content">
+              <div className="content-description text-center mb-4">
+                <h2>Create a New Testing Session</h2>
+                <h5 className="text-muted font-weight-light">Please select one of the options from bellow and proceed with the session</h5>
+              </div>
+              <div className="grid-card-flex-container">
+                <div className="grid-card md mr-4 ml-4">
+                  <div className="grid-card-thumbnail-container">
+                    <div className="grid-card-thumbnail bg-white mb-1 pt-1 pr-2 pl-2 pb-1">
+                      <img src={createAppIcon}/>
+                    </div>
+                  </div>
+                  <div className="grid-card-content-container text-center">
+                    <div className="grid-card-heading">Create Application</div>
+                    <div className="grid-card-description">
+                      <div className="main">Create a new application with custom metadata.</div>
+                    </div>
+                  </div>
+                  <div className="grid-card-footer text-center">
+                    <Button bsStyle="default" bsSize="sm" fill data-modal-key="create-application-modal" wd onClick={this.handleApplicationCreate}>
+                      Create Application
+                    </Button>
+                  </div>
+                </div>
+                <div className="grid-card md mr-4 ml-4">
+                  <div className="grid-card-thumbnail-container">
+                    <div className="grid-card-thumbnail bg-white mb-1 pt-1 pr-2 pl-2 pb-1">
+                      <img src={selectAppIcon}/>
+                    </div>
+                  </div>
+                  <div className="grid-card-content-container text-center">
+                    <div className="grid-card-heading">Select Existing</div>
+                    <div className="grid-card-description">
+                      <div className="main">Select an application which is already being created.</div>
+                    </div>
+                  </div>
+                  <div className="grid-card-footer text-center">
+                    <Button bsStyle="default" bsSize="sm" fill data-modal-key="select-application-modal" wd onClick={this.handleApplicationSelect}>
+                      Select Application
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              <Modal
+                modalKey="create-application-modal"
+                closeAction={actions.modal.closeModal}
+                modalState={modal.Modal}
+              >
+                <ModalHeader title={viewConfig ? viewConfig.title : 'Create Application'}/>
+                <ModalBody>
+                  <CreateApplicationForm
+                    initialValues={(editingApplication && !_.isEmpty(editingApplication)) ? editingApplication : {}}
+                    config={viewConfig}
+                    applicationTypes={applicationTypesOptions}
+                    genreTypes={genreTypesOptions}
+                  />
+                </ModalBody>
+                <ModalFooter/>
+              </Modal>
+              <Modal
+                modalKey="select-application-modal"
+                closeAction={actions.modal.closeModal}
+                modalState={modal.Modal}
+              >
+                <ModalHeader title={viewConfig ? viewConfig.title : 'Select Application'}/>
+                <ModalBody>
+                  <SelectApplicationForm
+                    initialValues={{}}
+                    config={viewConfig}
+                    applications={applicationOptions}
+                  />
+                </ModalBody>
+                <ModalFooter/>
+              </Modal>
             </div>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <Card
-                customCssClass="margin-top"
-                content={
-                  <div></div>
-                }
-              />
-            </Col>
           </Row>
         </Grid>
       </div>
@@ -100,12 +217,6 @@ class NewSession extends Component {
 }
 const injectedPropTypes = {
   actions: PropTypes.shape({}),
-  dropdown: PropTypes.shape({
-    Dropdown: PropTypes.shape({
-      showDropdown: PropTypes.bool,
-      dropdownKey: PropTypes.string,
-    }),
-  }),
 };
 
 NewSession.propTypes = {
@@ -114,14 +225,20 @@ NewSession.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    dropdown: state.dropdown
+    modal: state.modal,
+    applications: state.applications.applications,
+    newApplication: state.applications.newApplication,
+    editingApplication: state.applications.editedApplication,
+    deletingApplication: state.applications.deletingApplication,
+    viewConfig: state.applications.applicationViewConfig,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      dropdown: bindActionCreators(dropdownActionCreators, dispatch),
+      modal: bindActionCreators(modalActionCreators, dispatch),
+      applications: bindActionCreators(applicationActionCreators, dispatch),
     },
   };
 }

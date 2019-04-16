@@ -12,7 +12,7 @@ class HttpInterceptor {
     const instance = axios.create(defaultOptions);
 
     instance.interceptors.request.use((request) => {
-      request.headers.Authorization = getTokenFromCookie();
+      // request.headers.Authorization = getTokenFromCookie();
       store.dispatch(showLoader());
       return request;
     }, (error) => {
