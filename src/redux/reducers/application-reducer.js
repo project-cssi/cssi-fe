@@ -8,11 +8,15 @@ import {
   SET_EDITING_APPLICATION,
   SET_DELETING_APPLICATION,
   SET_APPLICATION_VIEW_CONFIG,
-  UPDATE_APPLICATION_SHARING_STATUS
+  UPDATE_APPLICATION_SHARING_STATUS,
+  FETCH_APPLICATION_TYPES,
+  FETCH_APPLICATION_GENRES
 } from '../types';
 
 const initialState = {
   applications: [],
+  applicationTypes: [],
+  applicationGenres: [],
   newApplication: {},
   selectedApplication: {},
   editedApplication: {},
@@ -27,6 +31,16 @@ export function applicationReducer(state = initialState, action) {
       return {
         ...state,
         applications: action.payload,
+      };
+    case FETCH_APPLICATION_TYPES:
+      return {
+        ...state,
+        applicationTypes: action.payload,
+      };
+    case FETCH_APPLICATION_GENRES:
+      return {
+        ...state,
+        applicationGenres: action.payload,
       };
     case ADD_APPLICATION:
       return {
