@@ -7,7 +7,7 @@ import {
   SET_EDITING_APPLICATION,
   SET_DELETING_APPLICATION,
   SET_APPLICATION_VIEW_CONFIG,
-  UPDATE_APPLICATION_SHARING_STATUS
+  UPDATE_APPLICATION_SHARING_STATUS, SET_SELECTED_APPLICATION
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
@@ -90,6 +90,13 @@ export const updateApplicationSharingStatus = data => (dispatch) => {
     .catch((error) => {
       console.log('[ERROR]', ' [Applications, updateApplicationSharingStatus()]: HTTP PATCH - Callback Error', error);
     });
+};
+
+export const setSelectedApplication = app => (dispatch) => {
+  return dispatch({
+    type: SET_SELECTED_APPLICATION,
+    payload: app,
+  });
 };
 
 export const setDeletingApplication = app => (dispatch) => {
