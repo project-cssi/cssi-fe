@@ -3,18 +3,8 @@ import { closeModal } from '../../../redux/actions/modal-actions';
 
 const selectApplicationModalKey = 'select-application-modal';
 
-function submit(values, dispatch, props) {
-  const body = {
-    name: values.name,
-    developer: values.developer,
-    type: values.type.value,
-    genre: values.genre.value,
-    description: values.description,
-    public_sharing: values.sharing
-  };
-
-  dispatch(setSelectedApplication(body));
-
+function submit(values, dispatch) {
+  dispatch(setSelectedApplication(values.application.value));
   dispatch(closeModal({ modalKey: selectApplicationModalKey }));
 }
 
