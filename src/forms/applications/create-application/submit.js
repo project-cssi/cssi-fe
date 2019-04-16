@@ -10,7 +10,7 @@ function submit(values, dispatch, props) {
     type: values.type.value.id,
     genre: values.genre.value.id,
     description: values.description,
-    public_sharing: values.sharing
+    public_sharing: values.sharing? values.sharing: false
   };
 
   if (props.config && props.config.mode === 'create') dispatch(createApplication(body));
