@@ -7,14 +7,110 @@ import {
 } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as dropdownActionCreators from '../../redux/actions/from-dropdown-actions';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import createAppIcon from '../../assets/img/illustrations/create-app.svg'
 import selectAppIcon from '../../assets/img/illustrations/select-app.svg'
+import * as applicationActionCreators from '../../redux/actions/application-actions';
+import * as modalActionCreators from '../../redux/actions/modal-actions';
+import _ from 'lodash';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from '../../components';
+import {CustomButton as Button} from '../../elements'
+import {CreateApplicationForm, SelectApplicationForm} from '../../forms';
 
 class NewSession extends Component {
 
+  openModal = (e) => {
+    const {actions} = this.props;
+    const {modalKey} = e.target.dataset;
+    actions.modal.openModal({modalKey});
+  };
+
+  handleApplicationCreate = (e) => {
+    const {actions} = this.props;
+    const config = {
+      title: 'Create New Application',
+      button: 'Create Application',
+      mode: 'create',
+    };
+    actions.applications.setApplicationViewConfig(config);
+    this.openModal(e);
+  };
+
+  handleApplicationSelect = (e) => {
+    const {actions} = this.props;
+    const config = {
+      title: 'Select Existing Application',
+      button: 'Select Application',
+      mode: 'select',
+    };
+    actions.applications.setApplicationViewConfig(config);
+    this.openModal(e);
+  };
+
   render() {
+    const {
+      actions, modal, viewConfig, editingApplication,
+    } = this.props;
+
+    const applicationTypesOptions = [
+      {
+        value: {
+          display_name: 'VR',
+          display_name_full: 'Virtual Reality',
+          id: 1,
+          name: 'vr'
+        }, label: 'Virtual Reality'
+      },
+      {
+        value: {
+          display_name: 'AR',
+          display_name_full: 'Augmented Reality',
+          id: 2,
+          name: 'ar'
+        }, label: 'Augmented Reality'
+      },
+      {
+        value: {
+          display_name: 'MR',
+          display_name_full: 'Mixed Reality',
+          id: 3,
+          name: 'mr'
+        }, label: 'Mixed Reality'
+      },
+    ];
+
+    const genreTypesOptions = [
+      {
+        value: {
+          display_name: 'VR',
+          display_name_full: 'Virtual Reality',
+          id: 1,
+          name: 'vr'
+        }, label: 'Virtual Reality'
+      },
+      {
+        value: {
+          display_name: 'AR',
+          display_name_full: 'Augmented Reality',
+          id: 2,
+          name: 'ar'
+        }, label: 'Augmented Reality'
+      },
+      {
+        value: {
+          display_name: 'MR',
+          display_name_full: 'Mixed Reality',
+          id: 3,
+          name: 'mr'
+        }, label: 'Mixed Reality'
+      },
+    ];
+
     return (
       <div className="main-content no-padding new-session-page">
         <Grid fluid>
@@ -42,6 +138,11 @@ class NewSession extends Component {
                       <div className="main">Create a new application with custom metadata.</div>
                     </div>
                   </div>
+                  <div className="grid-card-footer text-center">
+                    <Button bsStyle="default" bsSize="sm" fill data-modal-key="create-application-modal" wd onClick={this.handleApplicationCreate}>
+                      Create Application
+                    </Button>
+                  </div>
                 </div>
                 <div className="grid-card md mr-4 ml-4">
                   <div className="grid-card-thumbnail-container">
@@ -55,8 +156,44 @@ class NewSession extends Component {
                       <div className="main">Select an application which is already being created.</div>
                     </div>
                   </div>
+                  <div className="grid-card-footer text-center">
+                    <Button bsStyle="default" bsSize="sm" fill data-modal-key="select-application-modal" wd onClick={this.handleApplicationSelect}>
+                      Select Application
+                    </Button>
+                  </div>
                 </div>
               </div>
+              <Modal
+                modalKey="create-application-modal"
+                closeAction={actions.modal.closeModal}
+                modalState={modal.Modal}
+              >
+                <ModalHeader title={viewConfig ? viewConfig.title : 'Create Application'}/>
+                <ModalBody>
+                  <CreateApplicationForm
+                    initialValues={(editingApplication && !_.isEmpty(editingApplication)) ? editingApplication : {}}
+                    config={viewConfig}
+                    applicationTypes={applicationTypesOptions}
+                    genreTypes={genreTypesOptions}
+                  />
+                </ModalBody>
+                <ModalFooter/>
+              </Modal>
+              <Modal
+                modalKey="select-application-modal"
+                closeAction={actions.modal.closeModal}
+                modalState={modal.Modal}
+              >
+                <ModalHeader title={viewConfig ? viewConfig.title : 'Select Application'}/>
+                <ModalBody>
+                  <SelectApplicationForm
+                    initialValues={{}}
+                    config={viewConfig}
+                    applications={applicationTypesOptions}
+                  />
+                </ModalBody>
+                <ModalFooter/>
+              </Modal>
             </div>
           </Row>
         </Grid>
@@ -66,12 +203,6 @@ class NewSession extends Component {
 }
 const injectedPropTypes = {
   actions: PropTypes.shape({}),
-  dropdown: PropTypes.shape({
-    Dropdown: PropTypes.shape({
-      showDropdown: PropTypes.bool,
-      dropdownKey: PropTypes.string,
-    }),
-  }),
 };
 
 NewSession.propTypes = {
@@ -80,14 +211,20 @@ NewSession.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    dropdown: state.dropdown
+    modal: state.modal,
+    applications: state.applications.applications,
+    newApplication: state.applications.newApplication,
+    editingApplication: state.applications.editedApplication,
+    deletingApplication: state.applications.deletingApplication,
+    viewConfig: state.applications.applicationViewConfig,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      dropdown: bindActionCreators(dropdownActionCreators, dispatch),
+      modal: bindActionCreators(modalActionCreators, dispatch),
+      applications: bindActionCreators(applicationActionCreators, dispatch),
     },
   };
 }
