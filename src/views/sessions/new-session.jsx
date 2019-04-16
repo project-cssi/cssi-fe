@@ -28,6 +28,7 @@ class NewSession extends Component {
     const {actions} = this.props;
     actions.applications.fetchApplications();
     actions.applications.fetchApplicationTypes();
+    actions.applications.fetchApplicationGenres();
   }
 
   openModal = (e) => {
@@ -60,7 +61,7 @@ class NewSession extends Component {
 
   render() {
     const {
-      actions, modal, viewConfig, editingApplication, applications, applicationTypes
+      actions, modal, viewConfig, editingApplication, applications, applicationTypes, applicationGenres
     } = this.props;
 
     let applicationOptions = null;
@@ -77,36 +78,18 @@ class NewSession extends Component {
     if (applicationTypes) {
       applicationTypesOptions = applicationTypes
         .map(type => (
-          { value: type, label: type.name }
+          { value: type, label: type.display_name_full }
         ));
     }
 
-    const genreTypesOptions = [
-      {
-        value: {
-          display_name: 'VR',
-          display_name_full: 'Virtual Reality',
-          id: 1,
-          name: 'vr'
-        }, label: 'Virtual Reality'
-      },
-      {
-        value: {
-          display_name: 'AR',
-          display_name_full: 'Augmented Reality',
-          id: 2,
-          name: 'ar'
-        }, label: 'Augmented Reality'
-      },
-      {
-        value: {
-          display_name: 'MR',
-          display_name_full: 'Mixed Reality',
-          id: 3,
-          name: 'mr'
-        }, label: 'Mixed Reality'
-      },
-    ];
+    let applicationGenreOptions = null;
+
+    if (applicationGenres) {
+      applicationGenreOptions = applicationGenres
+        .map(genre => (
+          { value: genre, label: genre.display_name }
+        ));
+    }
 
     return (
       <div className="main-content no-padding new-session-page">
@@ -171,7 +154,7 @@ class NewSession extends Component {
                     initialValues={(editingApplication && !_.isEmpty(editingApplication)) ? editingApplication : {}}
                     config={viewConfig}
                     applicationTypes={applicationTypesOptions}
-                    genreTypes={genreTypesOptions}
+                    genreTypes={applicationGenreOptions}
                   />
                 </ModalBody>
                 <ModalFooter/>
@@ -211,6 +194,7 @@ function mapStateToProps(state) {
     modal: state.modal,
     applications: state.applications.applications,
     applicationTypes: state.applications.applicationTypes,
+    applicationGenres: state.applications.applicationGenres,
     newApplication: state.applications.newApplication,
     editingApplication: state.applications.editedApplication,
     deletingApplication: state.applications.deletingApplication,

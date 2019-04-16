@@ -96,6 +96,7 @@ class Applications extends Component {
 
     actions.applications.fetchApplications();
     actions.applications.fetchApplicationTypes();
+    actions.applications.fetchApplicationGenres();
 
     // Generate the Table
     $(this.refs.applicationsTable).DataTable({
@@ -237,7 +238,7 @@ class Applications extends Component {
 
   render() {
     const {
-      actions, modal, viewConfig, editingApplication, applicationTypes
+      actions, modal, viewConfig, editingApplication, applicationTypes, applicationGenres
     } = this.props;
 
     const {
@@ -249,7 +250,16 @@ class Applications extends Component {
     if (applicationTypes) {
       applicationTypesOptions = applicationTypes
         .map(type => (
-          { value: type, label: type.name }
+          { value: type, label: type.display_name_full }
+        ));
+    }
+
+    let applicationGenreOptions = null;
+
+    if (applicationGenres) {
+      applicationGenreOptions = applicationGenres
+        .map(genre => (
+          { value: genre, label: genre.display_name }
         ));
     }
 
@@ -275,7 +285,7 @@ class Applications extends Component {
                       initialValues={(editingApplication && !_.isEmpty(editingApplication)) ? editingApplication : {}}
                       config={viewConfig}
                       applicationTypes={applicationTypesOptions}
-                      genreTypes={applicationTypesOptions}
+                      genreTypes={applicationGenreOptions}
                     />
                   </ModalBody>
                   <ModalFooter/>
@@ -364,6 +374,7 @@ function mapStateToProps(state) {
     modal: state.modal,
     applications: state.applications.applications,
     applicationTypes: state.applications.applicationTypes,
+    applicationGenres: state.applications.applicationGenres,
     newApplication: state.applications.newApplication,
     editingApplication: state.applications.editedApplication,
     deletingApplication: state.applications.deletingApplication,

@@ -12,6 +12,7 @@ const API_ENDPOINTS = {
   deleteUser: `${BASE_API}/users/{}/`,
   getApplications: `${BASE_API}/applications/`,
   getApplicationTypes: `${BASE_API}/applications/types`,
+  getApplicationGenres: `${BASE_API}/applications/genres`,
   getApplicationInfo: `${BASE_API}/applications/{}/`,
   updateApplicationSharing: `${BASE_API}/applications/{}/sharing/`,
   createApplication: `${BASE_API}/applications/`,
