@@ -27,6 +27,7 @@ class NewSession extends Component {
   componentDidMount() {
     const {actions} = this.props;
     actions.applications.fetchApplications();
+    actions.applications.fetchApplicationTypes();
   }
 
   openModal = (e) => {
@@ -59,7 +60,7 @@ class NewSession extends Component {
 
   render() {
     const {
-      actions, modal, viewConfig, editingApplication, applications
+      actions, modal, viewConfig, editingApplication, applications, applicationTypes
     } = this.props;
 
     let applicationOptions = null;
@@ -71,32 +72,14 @@ class NewSession extends Component {
         ));
     }
 
-    const applicationTypesOptions = [
-      {
-        value: {
-          display_name: 'VR',
-          display_name_full: 'Virtual Reality',
-          id: 1,
-          name: 'vr'
-        }, label: 'Virtual Reality'
-      },
-      {
-        value: {
-          display_name: 'AR',
-          display_name_full: 'Augmented Reality',
-          id: 2,
-          name: 'ar'
-        }, label: 'Augmented Reality'
-      },
-      {
-        value: {
-          display_name: 'MR',
-          display_name_full: 'Mixed Reality',
-          id: 3,
-          name: 'mr'
-        }, label: 'Mixed Reality'
-      },
-    ];
+    let applicationTypesOptions = null;
+
+    if (applicationTypes) {
+      applicationTypesOptions = applicationTypes
+        .map(type => (
+          { value: type, label: type.name }
+        ));
+    }
 
     const genreTypesOptions = [
       {
@@ -227,6 +210,7 @@ function mapStateToProps(state) {
   return {
     modal: state.modal,
     applications: state.applications.applications,
+    applicationTypes: state.applications.applicationTypes,
     newApplication: state.applications.newApplication,
     editingApplication: state.applications.editedApplication,
     deletingApplication: state.applications.deletingApplication,

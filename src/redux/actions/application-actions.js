@@ -7,7 +7,9 @@ import {
   SET_EDITING_APPLICATION,
   SET_DELETING_APPLICATION,
   SET_APPLICATION_VIEW_CONFIG,
-  UPDATE_APPLICATION_SHARING_STATUS, SET_SELECTED_APPLICATION
+  UPDATE_APPLICATION_SHARING_STATUS,
+  SET_SELECTED_APPLICATION,
+  FETCH_APPLICATION_TYPES
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
@@ -26,6 +28,20 @@ export const fetchApplications = () => (dispatch) => {
     })
     .catch((error) => {
       console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
+    });
+};
+
+export const fetchApplicationTypes = () => (dispatch) => {
+  const endpoint = API_ENDPOINTS.getApplicationTypes;
+  return http.get(endpoint)
+    .then((response) => {
+      dispatch({
+        type: FETCH_APPLICATION_TYPES,
+        payload: response.data.data,
+      });
+    })
+    .catch((error) => {
+      console.log('[ERROR]', ' [Applications, fetchApplicationTypes()]: HTTP GET - Callback Error', error);
     });
 };
 
