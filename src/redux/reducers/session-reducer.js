@@ -2,9 +2,10 @@ import _ from 'lodash';
 import {
   ADD_QUESTIONNAIRE,
   FETCH_QUESTIONNAIRES,
-  SET_QUESTIONNAIRE_VIEW_CONFIG,
+  SET_SESSION_VIEW_CONFIG,
   SET_SELECTED_QUESTIONNAIRE,
-  UPDATE_QUESTIONNAIRE
+  UPDATE_QUESTIONNAIRE,
+  SET_EXPECTED_EMOTIONS
 } from '../types';
 
 const initialState = {
@@ -12,10 +13,11 @@ const initialState = {
   newQuestionnaire: {},
   selectedQuestionnaire: {},
   editedQuestionnaire: {},
-  questionnaireViewConfig: {}
+  sessionViewConfig: {},
+  expectedEmotions: []
 };
 
-export function questionnaireReducer(state = initialState, action) {
+export function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_QUESTIONNAIRES:
       return {
@@ -39,10 +41,15 @@ export function questionnaireReducer(state = initialState, action) {
         ...state,
         selectedQuestionnaire: action.payload,
       };
-    case SET_QUESTIONNAIRE_VIEW_CONFIG:
+    case SET_EXPECTED_EMOTIONS:
       return {
         ...state,
-        questionnaireViewConfig: action.payload,
+        expectedEmotions: action.payload,
+      };
+    case SET_SESSION_VIEW_CONFIG:
+      return {
+        ...state,
+        sessionViewConfig: action.payload,
       };
     default:
       return state;

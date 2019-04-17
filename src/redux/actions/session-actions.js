@@ -2,9 +2,10 @@ import _ from 'lodash';
 import {
   ADD_QUESTIONNAIRE,
   FETCH_QUESTIONNAIRES,
-  SET_QUESTIONNAIRE_VIEW_CONFIG,
+  SET_SESSION_VIEW_CONFIG,
   SET_SELECTED_QUESTIONNAIRE,
-  UPDATE_QUESTIONNAIRE
+  UPDATE_QUESTIONNAIRE,
+  SET_EXPECTED_EMOTIONS
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
@@ -65,7 +66,14 @@ export const setSelectedQuestionnaire = data => (dispatch) => {
   });
 };
 
-export const setQuestionnaireViewConfig = data => dispatch => dispatch({
-  type: SET_QUESTIONNAIRE_VIEW_CONFIG,
+export const setExpectedEmotions = data => (dispatch) => {
+  return dispatch({
+    type: SET_EXPECTED_EMOTIONS,
+    payload: data,
+  });
+};
+
+export const setSessionViewConfig = data => dispatch => dispatch({
+  type: SET_SESSION_VIEW_CONFIG,
   payload: data,
 });

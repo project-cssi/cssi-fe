@@ -2,7 +2,7 @@ import _ from 'lodash';
 import validate from './validate';
 import store from '../../../redux/store';
 import {addNotification} from '../../../redux/actions/notification-actions';
-import {createQuestionnaire} from '../../../redux/actions/questionnaire-actions';
+import {createQuestionnaire} from '../../../redux/actions/session-actions';
 
 function submit(values, dispatch, props) {
   // dirty trick to get around the redux form validation issue.
