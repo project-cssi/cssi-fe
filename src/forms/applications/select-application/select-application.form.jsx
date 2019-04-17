@@ -41,7 +41,6 @@ let SelectApplicationForm = (props) => {
 SelectApplicationForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
-  initialValues: PropTypes.shape({}).isRequired,
   config: PropTypes.shape({
     title: PropTypes.string,
     button: PropTypes.string,
@@ -57,8 +56,8 @@ SelectApplicationForm.propTypes = {
 
 SelectApplicationForm = reduxForm({
   form: 'selectApplication',
+  initialValues: {},
   onSubmit: submit,
-  enableReinitialize: true,
   validate,
 })(SelectApplicationForm);
 
