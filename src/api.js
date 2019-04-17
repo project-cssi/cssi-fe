@@ -17,7 +17,11 @@ const API_ENDPOINTS = {
   updateApplicationSharing: `${BASE_API}/applications/{}/sharing/`,
   createApplication: `${BASE_API}/applications/`,
   editApplication: `${BASE_API}/applications/{}/`,
-  deleteApplication: `${BASE_API}/applications/{}/`
+  deleteApplication: `${BASE_API}/applications/{}/`,
+  getQuestionnaires: `${BASE_API}/questionnaires/`,
+  getQuestionnaireInfo: `${BASE_API}/questionnaires/{}/`,
+  updateQuestionnaire: `${BASE_API}/questionnaires/{}/`,
+  createQuestionnaire: `${BASE_API}/questionnaires/`,
 };
 
 export { API_ENDPOINTS };

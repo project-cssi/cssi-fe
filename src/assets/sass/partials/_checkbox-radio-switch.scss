@@ -156,7 +156,7 @@
 
 .radio input[type="radio"]:checked:not(:disabled):hover + label::after,
 .radio input[type="radio"]:checked + label::after {
-  color: $color-azure;
+  color: $secondary-color;
 }
 
 .radio input[type="radio"]:disabled + label {

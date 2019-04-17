@@ -13,9 +13,13 @@ function submit(values, dispatch, props) {
     public_sharing: values.sharing? values.sharing: false
   };
 
-  if (props.config && props.config.mode === 'create') dispatch(createApplication(body));
-  else if (props.config && props.config.mode === 'edit') dispatch(editApplication(body));
-  else dispatch(createApplication(body));
+  if (props.config && props.config.mode === 'create') {
+    dispatch(createApplication(body));
+  } else if (props.config && props.config.mode === 'edit') {
+    dispatch(editApplication(body));
+  } else {
+    dispatch(createApplication(body));
+  }
 
   dispatch(closeModal({ modalKey: createApplicationModalKey }));
 }

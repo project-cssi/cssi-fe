@@ -1,7 +1,8 @@
 import {
   DashboardView,
   ApplicationsView,
-  NewSessionView
+  NewSessionView,
+  QuestionnaireView
 } from '../views';
 import testIcon from '../assets/img/icons/test.svg';
 import dashboardIcon from '../assets/img/icons/dashboard.svg';
@@ -16,6 +17,9 @@ const dashboard = [
   },
   {
     path: '/new-session', name: 'New Session', icon: testIcon, component: NewSessionView, restrictionLevel: 0,
+  },
+  {
+    path: '/questionnaire', hide: true, name: 'Questionnaire', icon: testIcon, component: QuestionnaireView, restrictionLevel: 0,
   },
   {
     redirect: true, path: '/', pathTo: '/dashboard', name: 'Dashboard', restrictionLevel: 0,

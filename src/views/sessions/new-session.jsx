@@ -21,6 +21,7 @@ import {
 } from '../../components';
 import {CustomButton as Button} from '../../elements'
 import {CreateApplicationForm, SelectApplicationForm} from '../../forms';
+import {navigateWithParams} from '../../services';
 
 class NewSession extends Component {
 
@@ -29,6 +30,17 @@ class NewSession extends Component {
     actions.applications.fetchApplications();
     actions.applications.fetchApplicationTypes();
     actions.applications.fetchApplicationGenres();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { selectedApplication } = this.props;
+    if (selectedApplication && nextProps.selectedApplication) {
+      if (!_.isEqual(selectedApplication, nextProps.selectedApplication)) {
+        let path = '/questionnaire';
+        let searchParams = '?type=pre&app=' + nextProps.selectedApplication.id;
+        navigateWithParams(path, searchParams)
+      }
+    }
   }
 
   openModal = (e) => {
@@ -61,7 +73,7 @@ class NewSession extends Component {
 
   render() {
     const {
-      actions, modal, viewConfig, editingApplication, applications, applicationTypes, applicationGenres
+      actions, modal, viewConfig, applications, applicationTypes, applicationGenres
     } = this.props;
 
     let applicationOptions = null;
@@ -151,7 +163,7 @@ class NewSession extends Component {
                 <ModalHeader title={viewConfig ? viewConfig.title : 'Create Application'}/>
                 <ModalBody>
                   <CreateApplicationForm
-                    initialValues={(editingApplication && !_.isEmpty(editingApplication)) ? editingApplication : {}}
+                    initialValues={{}}
                     config={viewConfig}
                     applicationTypes={applicationTypesOptions}
                     genreTypes={applicationGenreOptions}
@@ -167,7 +179,6 @@ class NewSession extends Component {
                 <ModalHeader title={viewConfig ? viewConfig.title : 'Select Application'}/>
                 <ModalBody>
                   <SelectApplicationForm
-                    initialValues={{}}
                     config={viewConfig}
                     applications={applicationOptions}
                   />
@@ -193,10 +204,10 @@ function mapStateToProps(state) {
   return {
     modal: state.modal,
     applications: state.applications.applications,
+    selectedApplication: state.applications.selectedApplication,
     applicationTypes: state.applications.applicationTypes,
     applicationGenres: state.applications.applicationGenres,
     newApplication: state.applications.newApplication,
-    editingApplication: state.applications.editedApplication,
     deletingApplication: state.applications.deletingApplication,
     viewConfig: state.applications.applicationViewConfig,
   };

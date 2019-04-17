@@ -7,6 +7,7 @@ import { loaderReducer } from './loader-reducer';
 import { notificationReducer } from './notification-reducer';
 import { userReducer } from './user-reducer';
 import { applicationReducer } from './application-reducer';
+import { questionnaireReducer } from './questionnaire-reducer';
 
 const appReducer = combineReducers({
   form: reduxFormReducer,
@@ -16,7 +17,8 @@ const appReducer = combineReducers({
   loader: loaderReducer,
   notifications: notificationReducer,
   users: userReducer,
-  applications: applicationReducer
+  applications: applicationReducer,
+  questionnaires: questionnaireReducer,
 });
 
 const rootReducer = (state, action) => {
