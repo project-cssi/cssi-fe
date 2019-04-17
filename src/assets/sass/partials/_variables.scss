@@ -96,8 +96,12 @@ $card-bg: $color-white !default;
 // Card Grid
 $grid-card-border-radius: 4px;
 $grid-card-border: 1px solid $lighter-gray;
+$grid-card-default-border-bottom: 5px solid transparent;
+$grid-card-selected-border-bottom: 5px solid $secondary-color;
+$grid-card-selected-shadow: 4px 4px 20px 0 rgba(218, 218, 218, 0.6);
 $grid-card-max-width: 250px;
 $grid-card-max-width-md: 300px;
+$grid-card-max-width-sm: 200px;
 $grid-card-box-shadow: 1px 1px 3px 0 rgba(218, 218, 218, 0.6);
 $grid-card-hover-box-shadow: 3px 3px 15px 0 rgba(218, 218, 218, 0.6);
 $grid-card-spacer-y: 1.25rem !default;

@@ -272,14 +272,13 @@
   }
 }
 
-.new-session-page {
-  .new-session-content {
-    margin-top: 10%;
-  }
-}
-
-.questionnaire-page {
-  .questionnaire-wrapper {
-    padding: 2% 5%;
+.session-page {
+  .main-session-content {
+    &.with-top-padding {
+      margin-top: 5%;
+    }
+    .questionnaire-wrapper {
+      padding: 2% 5%;
+    }
   }
 }
