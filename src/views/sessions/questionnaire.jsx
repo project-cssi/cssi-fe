@@ -74,11 +74,13 @@ class Questionnaire extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col md={6} mdOffset={3}>
               <Card
                 title={''}
                 content={(
+                  <div className="questionnaire-wrapper">
                     <CreateQuestionnaireForm config={{ type: 'pre' }}/>
+                  </div>
                 )}
               />
             </Col>
