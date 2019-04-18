@@ -112,6 +112,21 @@ class Emotions extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {actions, expectedEmotions} = this.props;
+    if (nextProps.expectedEmotions) {
+      if (!_.isEqual(expectedEmotions, nextProps.expectedEmotions)) {
+        actions.sessions.initializeSession(nextProps.sessionTemp);
+      }
+    }
+    if (nextProps.isSessionInitialized) {
+      if (nextProps.currentSession && nextProps.currentSession.id) {
+        const searchParams = '?session_id=' + nextProps.currentSession.id;
+        navigate('evaluation', searchParams);
+      }
+    }
+  }
+
   handleEmotionSelect = emotion => {
     const { emotions, selectedEmotions } = this.state;
     // clone object to avoid mutating
@@ -201,7 +216,7 @@ class Emotions extends Component {
                   type="submit"
                   bsStyle="primary"
                   disabled={selectedEmotions.length < 1}
-                  bsSize="sm"
+                  bsSize="md"
                   wd
                   fill
                   onClick={this.handleEmotionSubmit}
@@ -228,7 +243,11 @@ Emotions.propTypes = {
 function mapStateToProps(state) {
   return {
     selectedQuestionnaire: state.sessions.selectedQuestionnaire,
+    currentSession: state.sessions.currentSession,
+    sessionTemp: state.sessions.sessionTemp,
+    isSessionInitialized: state.sessions.isSessionInitialized,
     selectedApplication: state.sessions.selectedApplication,
+    expectedEmotions: state.sessions.expectedEmotions,
     viewConfig: state.sessions.sessionViewConfig
   };
 }
