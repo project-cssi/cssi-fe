@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
 import {
@@ -7,7 +7,7 @@ import {
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Dropzone from 'react-dropzone';
-import { CustomCheckbox as Checkbox, CustomSwitch as Switch } from '../elements';
+import {CustomCheckbox as Checkbox, CustomSwitch as Switch, CustomRadio as Radio} from '../elements';
 
 const createRenderer = render => (props) => {
   const {
@@ -17,7 +17,7 @@ const createRenderer = render => (props) => {
     required,
     placeholder,
     fieldClass,
-    meta: { touched, error, warning },
+    meta: {touched, error, warning},
     selectOptions,
     checkboxLabel,
     componentClass,
@@ -30,6 +30,12 @@ const createRenderer = render => (props) => {
     offLabel,
     children,
     fieldOptions,
+    inline,
+    innerLabel,
+    option,
+    groupName,
+    additionalClasses,
+    checked
   } = props;
 
   const fieldId = uniqid('field-');
@@ -53,24 +59,25 @@ const createRenderer = render => (props) => {
   }
 
   return (
-    <FormGroup>
+    <FormGroup className={inline? 'inline-block': ''}>
       {controlLabel}
       {
         render(
           input, label, fieldId, fieldClass, placeholder, type, selectOptions,
           checkboxLabel, componentClass, frontAddon, frontAddonAction, backAddon,
           backAddonAction, disabled, onLabel, offLabel, children, fieldOptions,
+          inline, innerLabel, option, groupName, additionalClasses, checked
         )
       }
       {touched && ((error && (
-      <small className="text-danger">
-        {error}
-      </small>
+        <small className="text-danger">
+          {error}
+        </small>
       )) || (warning
         && (
-        <small className="text-danger">
-          {warning}
-        </small>
+          <small className="text-danger">
+            {warning}
+          </small>
         )))}
     </FormGroup>
   );
@@ -86,9 +93,11 @@ createRenderer.defaultProps = {
   checkboxLabel: null,
   componentClass: null,
   frontAddon: null,
-  frontAddonAction: () => {},
+  frontAddonAction: () => {
+  },
   backAddon: null,
-  backAddonAction: () => {},
+  backAddonAction: () => {
+  },
   disabled: false,
   onLabel: null,
   offLabel: null,
@@ -242,6 +251,45 @@ export const RenderCheckbox = createRenderer(
       label={checkboxLabel}
       onChange={input.onChange}
       checked={input.value}
+    />
+  ),
+);
+
+export const RenderRadio = createRenderer(
+  (
+    input, label, fieldId, fieldClass, placeholder, type, selectOptions,
+    checkboxLabel, componentClass, frontAddon, frontAddonAction, backAddon,
+    backAddonAction, disabled, onLabel, offLabel, children, fieldOptions, inline,
+    innerLabel, option, groupName, additionalClasses, checked
+  ) => (
+    <Radio
+      id={fieldId}
+      label={innerLabel}
+      name={groupName}
+      option={option}
+      onChange={input.onChange}
+      checked={input.value === option}
+      inline={inline}
+      additionalClasses={additionalClasses}
+    />
+  ),
+);
+
+export const RenderRadioGroup = createRenderer(
+  (
+    input, label, fieldId, fieldClass, placeholder, type, selectOptions,
+    checkboxLabel, componentClass, frontAddon, frontAddonAction, backAddon,
+    backAddonAction, disabled, onLabel, offLabel, children, fieldOptions, inline,
+    innerLabel, option, groupName, additionalClasses, checked
+  ) => (
+    <Radio
+      id={fieldId}
+      label={innerLabel}
+      name={groupName}
+      option={option}
+      onChange={input.onChange}
+      inline={inline}
+      additionalClasses={additionalClasses}
     />
   ),
 );

@@ -24,3 +24,10 @@ export function navigate(route) {
     history.push('/dashboard');
   }
 }
+
+export function navigateWithParams(path, searchParams) {
+  history.push({
+    pathname: path,
+    search: searchParams
+  })
+}

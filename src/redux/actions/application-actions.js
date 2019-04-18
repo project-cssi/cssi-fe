@@ -66,8 +66,9 @@ export const createApplication = body => (dispatch) => {
     .then((response) => {
       dispatch({
         type: ADD_APPLICATION,
-        payload: response.data,
+        payload: response.data.data,
       });
+      dispatch(setSelectedApplication(response.data.data))
     })
     .catch((error) => {
       console.log('[ERROR]', ' [Applications, createApplication()]: HTTP POST - Callback Error', error);
@@ -81,7 +82,7 @@ export const editApplication = body => (dispatch) => {
     .then((response) => {
       dispatch({
         type: EDIT_APPLICATION,
-        payload: response.data,
+        payload: response.data.data,
       });
     })
     .catch((error) => {
@@ -96,7 +97,7 @@ export const deleteApplication = id => (dispatch) => {
     .then((response) => {
       dispatch({
         type: DELETE_APPLICATION,
-        payload: response.data,
+        payload: response.data.data,
       });
     })
     .catch((error) => {
@@ -115,7 +116,7 @@ export const updateApplicationSharingStatus = data => (dispatch) => {
       console.log('[INFO]', ' [Applications, updateApplicationSharingStatus()]: HTTP PATCH - Callback Success', response);
       dispatch({
         type: UPDATE_APPLICATION_SHARING_STATUS,
-        payload: _.assign({}, data, response.data),
+        payload: _.assign({}, data, response.data.data),
       });
     })
     .catch((error) => {

@@ -445,3 +445,28 @@ legend {
 .bg-white {
   background: $color-white !important;
 }
+
+.inline-block {
+  display: inline-block !important;
+}
+
+/** 11. Page States **/
+.empty-placeholder {
+  text-align: center;
+  padding: 4% 15%;
+  .icon {
+    height: 50px;
+  }
+  .main-title {
+    margin: 5px 0 10px 0;
+    font-weight: $font-weight-normal;
+  }
+  .sub-title {
+    margin: 5px 0 10px 0;
+    font-weight: $font-weight-light;
+  }
+  .extra-context {
+    font-size: $font-size-small;
+    font-weight: $font-weight-light;
+  }
+}

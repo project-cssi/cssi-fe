@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 const CustomRadio = (props) => {
   const {
-    id, label, option, name, inline, ...rest
+    id, label, option, name, inline, additionalClasses, checked, ...rest
   } = props;
-
+  const mainClasses = inline ? 'radio radio-inline':'radio';
   return (
-    <div className={inline ? 'radio custom-radio-inline' : 'radio'}>
+    <div className={mainClasses + ' ' + additionalClasses}>
+      <input id={id} name={name} type="radio" value={option} {...rest} checked={checked}/>
       <label htmlFor={id}>
-        <input id={id} name={name} type="radio" value={option} {...rest} />
         {label}
       </label>
     </div>
@@ -29,7 +29,6 @@ CustomRadio.propTypes = {
     PropTypes.bool,
   ]).isRequired,
   name: PropTypes.string.isRequired,
-  inline: PropTypes.bool,
   checked: PropTypes.bool.isRequired,
 };
 

@@ -1,7 +1,10 @@
 import {
   DashboardView,
   ApplicationsView,
-  NewSessionView
+  NewSessionView,
+  QuestionnaireView,
+  EmotionsView,
+  EvaluationView
 } from '../views';
 import testIcon from '../assets/img/icons/test.svg';
 import dashboardIcon from '../assets/img/icons/dashboard.svg';
@@ -16,6 +19,15 @@ const dashboard = [
   },
   {
     path: '/new-session', name: 'New Session', icon: testIcon, component: NewSessionView, restrictionLevel: 0,
+  },
+  {
+    path: '/questionnaire', hide: true, name: 'Questionnaire', icon: testIcon, component: QuestionnaireView, restrictionLevel: 0,
+  },
+  {
+    path: '/emotions', hide: true, name: 'Expected Emotions', icon: testIcon, component: EmotionsView, restrictionLevel: 0,
+  },
+  {
+    path: '/evaluation', hide: true, name: 'Evaluation', icon: testIcon, component: EvaluationView, restrictionLevel: 0,
   },
   {
     redirect: true, path: '/', pathTo: '/dashboard', name: 'Dashboard', restrictionLevel: 0,
