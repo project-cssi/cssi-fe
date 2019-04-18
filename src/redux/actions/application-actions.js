@@ -15,6 +15,7 @@ import {
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
 import store from '../store';
+import { setSelectedApplication } from './session-actions';
 
 const http = new HttpInterceptor();
 
@@ -28,7 +29,21 @@ export const fetchApplications = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
+    });
+};
+
+export const getApplicationInfo = (id) => (dispatch) => {
+  const endpoint = API_ENDPOINTS.getApplicationInfo.format(id);
+  return http.get(endpoint)
+    .then((response) => {
+      dispatch({
+        type: SET_SELECTED_APPLICATION,
+        payload: response.data.data,
+      });
+    })
+    .catch((error) => {
+      // console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
     });
 };
 
@@ -42,7 +57,7 @@ export const fetchApplicationTypes = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, fetchApplicationTypes()]: HTTP GET - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, fetchApplicationTypes()]: HTTP GET - Callback Error', error);
     });
 };
 
@@ -56,7 +71,7 @@ export const fetchApplicationGenres = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, fetchApplicationGenres()]: HTTP GET - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, fetchApplicationGenres()]: HTTP GET - Callback Error', error);
     });
 };
 
@@ -71,7 +86,7 @@ export const createApplication = body => (dispatch) => {
       dispatch(setSelectedApplication(response.data.data))
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, createApplication()]: HTTP POST - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, createApplication()]: HTTP POST - Callback Error', error);
     });
 };
 
@@ -86,7 +101,7 @@ export const editApplication = body => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, editApplication()]: HTTP PUT - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, editApplication()]: HTTP PUT - Callback Error', error);
     });
 };
 
@@ -101,7 +116,7 @@ export const deleteApplication = id => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, deleteApplication()]: HTTP DELETE - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, deleteApplication()]: HTTP DELETE - Callback Error', error);
     });
 };
 
@@ -120,15 +135,8 @@ export const updateApplicationSharingStatus = data => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Applications, updateApplicationSharingStatus()]: HTTP PATCH - Callback Error', error);
+      // console.log('[ERROR]', ' [Applications, updateApplicationSharingStatus()]: HTTP PATCH - Callback Error', error);
     });
-};
-
-export const setSelectedApplication = app => (dispatch) => {
-  return dispatch({
-    type: SET_SELECTED_APPLICATION,
-    payload: app,
-  });
 };
 
 export const setDeletingApplication = app => (dispatch) => {

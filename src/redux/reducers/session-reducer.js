@@ -11,12 +11,14 @@ import {
   SET_RAW_PHONE_FEED_WS_DATA,
   SET_LIST_OF_AVAILABLE_CAMERAS,
   SET_SELECTED_CAMERA,
-  SET_CAMERA_CONNECTION_STATUS
+  SET_CAMERA_CONNECTION_STATUS, SET_SELECTED_APPLICATION
 } from '../types';
 
 const initialState = {
+  session: {},
   questionnaires: [],
   newQuestionnaire: {},
+  selectedApplication: {},
   selectedQuestionnaire: {},
   editedQuestionnaire: {},
   sessionViewConfig: {},
@@ -40,7 +42,7 @@ export function sessionReducer(state = initialState, action) {
       return {
         ...state,
         newQuestionnaire: action.payload,
-        questionnaires: [...state.applications, action.payload],
+        questionnaires: [...state.questionnaires, action.payload],
       };
     case UPDATE_QUESTIONNAIRE:
       return {
@@ -48,9 +50,15 @@ export function sessionReducer(state = initialState, action) {
         questionnaires: [..._.filter(state.questionnaires, questionnaire => questionnaire.id !== state.editedQuestionnaire.id),
           action.payload],
       };
+    case SET_SELECTED_APPLICATION:
+      return {
+        ...state,
+        selectedApplication: action.payload,
+      };
     case SET_SELECTED_QUESTIONNAIRE:
       return {
         ...state,
+        session: _.assign({}, state.session, { questionnaire_id: action.payload.id}),
         selectedQuestionnaire: action.payload,
       };
     case SET_EXPECTED_EMOTIONS:
