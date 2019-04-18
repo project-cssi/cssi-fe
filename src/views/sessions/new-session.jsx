@@ -12,6 +12,7 @@ import createAppIcon from '../../assets/img/illustrations/create-app.svg'
 import selectAppIcon from '../../assets/img/illustrations/select-app.svg'
 import * as applicationActionCreators from '../../redux/actions/application-actions';
 import * as modalActionCreators from '../../redux/actions/modal-actions';
+import * as sessionActionCreators from '../../redux/actions/session-actions';
 import _ from 'lodash';
 import {
   Modal,
@@ -21,7 +22,7 @@ import {
 } from '../../components';
 import {CustomButton as Button} from '../../elements'
 import {CreateApplicationForm, SelectApplicationForm} from '../../forms';
-import {navigateWithParams} from '../../services';
+import {navigate} from '../../services';
 
 class NewSession extends Component {
 
@@ -36,9 +37,8 @@ class NewSession extends Component {
     const {selectedApplication} = this.props;
     if (selectedApplication && nextProps.selectedApplication) {
       if (!_.isEqual(selectedApplication, nextProps.selectedApplication)) {
-        let path = '/questionnaire';
         let searchParams = '?type=pre&app=' + nextProps.selectedApplication.id;
-        navigateWithParams(path, searchParams)
+        navigate('questionnaire', searchParams)
       }
     }
   }
@@ -214,7 +214,7 @@ function mapStateToProps(state) {
   return {
     modal: state.modal,
     applications: state.applications.applications,
-    selectedApplication: state.applications.selectedApplication,
+    selectedApplication: state.sessions.selectedApplication,
     applicationTypes: state.applications.applicationTypes,
     applicationGenres: state.applications.applicationGenres,
     newApplication: state.applications.newApplication,
@@ -228,6 +228,7 @@ function mapDispatchToProps(dispatch) {
     actions: {
       modal: bindActionCreators(modalActionCreators, dispatch),
       applications: bindActionCreators(applicationActionCreators, dispatch),
+      sessions: bindActionCreators(sessionActionCreators, dispatch),
     },
   };
 }

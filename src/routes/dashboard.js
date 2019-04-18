@@ -18,16 +18,16 @@ const dashboard = [
     path: '/applications', name: 'Applications', icon: hmdIcon, component: ApplicationsView, restrictionLevel: 0,
   },
   {
-    path: '/new-session', name: 'New Session', icon: testIcon, component: NewSessionView, restrictionLevel: 0,
+    path: '/new-session', exact: true, name: 'New Session', icon: testIcon, component: NewSessionView, restrictionLevel: 0,
   },
   {
-    path: '/questionnaire', hide: true, name: 'Questionnaire', icon: testIcon, component: QuestionnaireView, restrictionLevel: 0,
+    path: '/new-session/questionnaire', hide: true, name: 'Questionnaire', icon: testIcon, component: QuestionnaireView, restrictionLevel: 0,
   },
   {
-    path: '/emotions', hide: true, name: 'Expected Emotions', icon: testIcon, component: EmotionsView, restrictionLevel: 0,
+    path: '/new-session/emotions', hide: true, name: 'Expected Emotions', icon: testIcon, component: EmotionsView, restrictionLevel: 0,
   },
   {
-    path: '/evaluation', hide: true, name: 'Evaluation', icon: testIcon, component: EvaluationView, restrictionLevel: 0,
+    path: '/new-session/evaluation', hide: true, name: 'Evaluation', icon: testIcon, component: EvaluationView, restrictionLevel: 0,
   },
   {
     redirect: true, path: '/', pathTo: '/dashboard', name: 'Dashboard', restrictionLevel: 0,

@@ -160,7 +160,7 @@ class Evaluation extends Component {
                               <img src={'data:image/jpg;base64,' + rawPhoneFeedWSData}/>
                               :
                               <EmptyPlaceholder title={'Mobile Phone Feed'} subTitle={'Phone feed is not connected'}
-                                                extraContext={'Please enter the websocket address bellow. ex: http://192.168.8.103:8123'}
+                                                extraContext={'Please enter the URL to obtain websocket connection address. ex: http://192.168.8.103:8123'}
                                                 icon={phoneIcon}/>
                           }
                         </div>
@@ -195,8 +195,8 @@ class Evaluation extends Component {
           <Row>
             <Col md={12}>
               <div className="text-center mt-2">
-                <Button type="submit" bsStyle="primary" bsSize="sm" wd fill>
-                  Select
+                <Button type="submit" bsStyle="primary" bsSize="lg" disabled={!(isRawPhoneFeedWSConnected && isCameraConnected) } fillSecondary fill>
+                  Start Session
                 </Button>
               </div>
             </Col>

@@ -15,7 +15,8 @@ $sidebar-link-border: linear-gradient(
 $sidebar-user-bg: #222d32;
 $sidebar-user-font-color: #4b646f;
 $sidebar-subnav-bg: #2c3b41;
-$sidebar-shadow: 1px 1px 20px 0 rgba(0, 0, 0, 0.6);
+$sidebar-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.6);
+$sidebar-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.6);
 
 // Navbar
 $navbar-padding-a: 9px 15px;
@@ -52,12 +53,13 @@ $copyright-margin: 0 12px;
 $copyright-font-size: 12px;
 
 // Header
-$header-shadow: 0px 1px 20px 0 rgba(0, 0, 0, 0.6);
+$header-shadow: 1px 1px 3px 0 rgba(218, 218, 218, 0.6);
+$header-border-image: linear-gradient(to bottom, $secondary-color, $tertiary-color) 1 100%;
 
 // Sub Header
 $sub-header-height: 50px;
 $sub-header-bg: linear-gradient(to right, $secondary-color, $tertiary-color);
-$sub-header-shadow: 0px 1px 20px 0 rgba(0, 0, 0, 0.6);
+$sub-header-shadow: 1px 1px 3px 0 rgba(218, 218, 218, 0.6);
 $sub-header-padding: 7px 0;
 $sub-header-border-bottom: 0px solid #eee;
 

@@ -16,16 +16,26 @@ export function signOut() {
   redirectToLogin();
 }
 
-export function navigate(route) {
+export function navigate(route, searchParams) {
+  let path = '/';
   if (route === 'home') {
     history.push('/');
   }
   if (route === 'dashboard') {
     history.push('/dashboard');
   }
-}
-
-export function navigateWithParams(path, searchParams) {
+  if(route === 'newSession') {
+    path = '/new-session';
+  }
+  if(route === 'questionnaire') {
+    path = '/new-session/questionnaire';
+  }
+  if(route === 'emotions') {
+    path = '/new-session/emotions';
+  }
+  if(route === 'evaluation') {
+    path = '/new-session/evaluation';
+  }
   history.push({
     pathname: path,
     search: searchParams

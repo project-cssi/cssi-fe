@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import {
-  ADD_QUESTIONNAIRE,
   FETCH_QUESTIONNAIRES,
   SET_SESSION_VIEW_CONFIG,
   SET_SELECTED_QUESTIONNAIRE,
@@ -11,12 +10,35 @@ import {
   SET_RAW_PHONE_FEED_WS_DATA,
   SET_LIST_OF_AVAILABLE_CAMERAS,
   SET_SELECTED_CAMERA,
-  SET_CAMERA_CONNECTION_STATUS
+  SET_CAMERA_CONNECTION_STATUS,
+  SET_SELECTED_APPLICATION,
+  INITIALIZE_SESSION
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
 
 const http = new HttpInterceptor();
+
+export const initializeSession = data => (dispatch) => {
+  const endpoint = API_ENDPOINTS.initializeSession;
+  return http.post(endpoint, data)
+    .then((response) => {
+      dispatch({
+        type: INITIALIZE_SESSION,
+        payload: response.data.data,
+      });
+    })
+    .catch((error) => {
+      //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
+    });
+};
+
+export const setSelectedApplication = app => (dispatch) => {
+  return dispatch({
+    type: SET_SELECTED_APPLICATION,
+    payload: app,
+  });
+};
 
 export const fetchQuestionnaires = () => (dispatch) => {
   const endpoint = API_ENDPOINTS.getQuestionnaires;
@@ -37,10 +59,9 @@ export const createQuestionnaire = data => (dispatch) => {
   return http.post(endpoint, data)
     .then((response) => {
       dispatch({
-        type: ADD_QUESTIONNAIRE,
+        type: SET_SELECTED_QUESTIONNAIRE,
         payload: response.data.data,
       });
-      dispatch(setSelectedQuestionnaire(response.data.data))
     })
     .catch((error) => {
       //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
@@ -65,15 +86,8 @@ export const updateQuestionnaire = data => (dispatch) => {
     });
 };
 
-export const setSelectedQuestionnaire = data => (dispatch) => {
-  return dispatch({
-    type: SET_SELECTED_QUESTIONNAIRE,
-    payload: data,
-  });
-};
-
 export const setExpectedEmotions = data => (dispatch) => {
-  return dispatch({
+  dispatch({
     type: SET_EXPECTED_EMOTIONS,
     payload: data,
   });
@@ -83,7 +97,7 @@ export const setRawPhoneFeedWSURL = data => (dispatch) => {
   const endpoint = data + '/wsinfo';
   return http.get(endpoint)
     .then((response) => {
-      return dispatch({
+      dispatch({
         type: SET_RAW_PHONE_FEED_WS_URL,
         payload: response.data,
       });
@@ -94,41 +108,43 @@ export const setRawPhoneFeedWSURL = data => (dispatch) => {
 };
 
 export const setRawPhoneFeedWSData = data => (dispatch) => {
-  return dispatch({
+  dispatch({
     type: SET_RAW_PHONE_FEED_WS_DATA,
     payload: data,
   });
 };
 
 export const setRawPhoneFeedWSConnectionStatus = data => (dispatch) => {
-  return dispatch({
+  dispatch({
     type: SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
     payload: data,
   });
 };
 
 export const setCameraConnectionStatus = data => (dispatch) => {
-  return dispatch({
+  dispatch({
     type: SET_CAMERA_CONNECTION_STATUS,
     payload: data,
   });
 };
 
 export const setListOfAvailableCameras = data => (dispatch) => {
-  return dispatch({
+  dispatch({
     type: SET_LIST_OF_AVAILABLE_CAMERAS,
     payload: data,
   });
 };
 
 export const setSelectedCamera = data => (dispatch) => {
-  return dispatch({
+  dispatch({
     type: SET_SELECTED_CAMERA,
     payload: data,
   });
 };
 
-export const setSessionViewConfig = data => dispatch => dispatch({
-  type: SET_SESSION_VIEW_CONFIG,
-  payload: data,
-});
+export const setSessionViewConfig = data => (dispatch) => {
+  dispatch({
+    type: SET_SESSION_VIEW_CONFIG,
+    payload: data,
+  });
+};

@@ -13,7 +13,7 @@ const API_ENDPOINTS = {
   getApplications: `${BASE_API}/applications/`,
   getApplicationTypes: `${BASE_API}/applications/types`,
   getApplicationGenres: `${BASE_API}/applications/genres`,
-  getApplicationInfo: `${BASE_API}/applications/{}/`,
+  getApplicationInfo: `${BASE_API}/applications/{}`,
   updateApplicationSharing: `${BASE_API}/applications/{}/sharing/`,
   createApplication: `${BASE_API}/applications/`,
   editApplication: `${BASE_API}/applications/{}/`,
@@ -22,6 +22,7 @@ const API_ENDPOINTS = {
   getQuestionnaireInfo: `${BASE_API}/questionnaires/{}/`,
   updateQuestionnaire: `${BASE_API}/questionnaires/{}/`,
   createQuestionnaire: `${BASE_API}/questionnaires/`,
+  initializeSession: `${BASE_API}/sessions/`,
 };
 
 export { API_ENDPOINTS };
