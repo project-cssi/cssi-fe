@@ -26,7 +26,25 @@ examples/shared/*.js
 test/the-files-to-test.generated.js
 *.log*
 chrome-user-data
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Other IDEs and editors
+.idea/
+*.iml
+*.swp
+.project
+.classpath
+.c9/
+*.launch
+.settings/
 *.sublime-project
 *.sublime-workspace
-.idea
-*.iml
+
+# Environments
+.env

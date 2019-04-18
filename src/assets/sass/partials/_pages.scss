@@ -271,3 +271,34 @@
     }
   }
 }
+
+.session-page {
+  .main-session-content {
+    &.with-top-padding {
+      margin-top: 5%;
+    }
+    .questionnaire-wrapper {
+      padding: 2% 5%;
+    }
+    .feed-wrapper {
+      padding: 2% 8%;
+      .phone-feed-wrapper,
+      .camera-feed-wrapper {
+        padding: 10px 20px;
+        .phone-feed-container {
+          img {
+            max-height: $phone-feed-max-height;
+            margin-bottom: 20px;
+          }
+        }
+        .camera-feed-container {
+          video {
+            max-height: $camera-feed-max-height;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+}

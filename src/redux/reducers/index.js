@@ -6,6 +6,8 @@ import { dropdownReducer } from './form-dropdown-reducer';
 import { loaderReducer } from './loader-reducer';
 import { notificationReducer } from './notification-reducer';
 import { userReducer } from './user-reducer';
+import { applicationReducer } from './application-reducer';
+import { sessionReducer } from './session-reducer';
 
 const appReducer = combineReducers({
   form: reduxFormReducer,
@@ -14,7 +16,9 @@ const appReducer = combineReducers({
   dropdown: dropdownReducer,
   loader: loaderReducer,
   notifications: notificationReducer,
-  users: userReducer
+  users: userReducer,
+  applications: applicationReducer,
+  sessions: sessionReducer,
 });
 
 const rootReducer = (state, action) => {

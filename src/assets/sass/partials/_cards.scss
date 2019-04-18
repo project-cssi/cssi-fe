@@ -319,3 +319,112 @@
     }
   }
 }
+
+.grid-card-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+  .grid-card {
+    flex: 1 0 $grid-card-max-width;
+    max-width: $grid-card-max-width;
+    margin: 0 10px 20px 10px;
+    background-color: $color-white;
+    box-shadow: $grid-card-box-shadow;
+    border-radius: $grid-card-border-radius;
+    border-bottom: $grid-card-default-border-bottom;
+    position: relative;
+    cursor: pointer;
+    min-height: 110px;
+    &.md {
+      flex: 1 0 $grid-card-max-width-md;
+      max-width: $grid-card-max-width-md;
+      .grid-card-thumbnail-container {
+        width: $grid-card-max-width-md;
+      }
+    }
+    &.sm {
+      flex: 1 0 $grid-card-max-width-sm;
+      max-width: $grid-card-max-width-sm;
+      .grid-card-thumbnail-container {
+        width: $grid-card-max-width-sm;
+      }
+    }
+    &:empty {
+      display: flex;
+      height: 0;
+      border: none;
+      margin-bottom: 0;
+      min-height: 0;
+      padding: 0;
+    }
+    &:hover {
+      box-shadow: $grid-card-hover-box-shadow;
+    }
+    .grid-card-thumbnail-container {
+      width: $grid-card-max-width;
+      text-align: center;
+      margin: 0 auto;
+      .fixed-height {
+        height: 200px;
+      }
+      .grid-card-thumbnail {
+        background: $light-gray;
+        border-top-right-radius: $grid-card-border-radius;
+        border-top-left-radius: $grid-card-border-radius;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        text-align: center;
+        overflow: hidden;
+        img {
+          vertical-align: middle;
+          width: 100%;
+          display: inline-block;
+          overflow: hidden;
+        }
+      }
+    }
+    .grid-card-content-container {
+      padding: 10px 30px;
+      .grid-card-heading {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 5px 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .grid-card-description {
+        .meta-1 {
+          color: $default-font-color-light;
+          margin-bottom: 5px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .meta-2 {
+          font-size: 11px;
+          margin-top: 4px;
+          color: $default-font-color-light;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          i {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+    .grid-card-footer {
+      margin: 10px 0;
+      padding: 5px 10px;
+    }
+    &.selected {
+      border-bottom: $grid-card-selected-border-bottom;
+      box-shadow: $grid-card-selected-shadow;
+    }
+  }
+}
