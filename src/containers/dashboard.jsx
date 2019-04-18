@@ -25,8 +25,8 @@ class Dashboard extends Component {
   componentDidMount() {
     const {actions} = this.props;
     if (validateCookie()) {
-      actions.users.setLoggedInUser(getCookie().username);
-      actions.users.setLoggedInUserUsername(getCookie().username);
+      //actions.users.setLoggedInUser(getCookie().username);
+      //actions.users.setLoggedInUserUsername(getCookie().username);
     }
   }
 
