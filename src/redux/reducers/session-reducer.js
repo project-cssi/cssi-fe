@@ -5,7 +5,10 @@ import {
   SET_SESSION_VIEW_CONFIG,
   SET_SELECTED_QUESTIONNAIRE,
   UPDATE_QUESTIONNAIRE,
-  SET_EXPECTED_EMOTIONS
+  SET_EXPECTED_EMOTIONS,
+  SET_RAW_PHONE_FEED_WS_URL,
+  SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
+  SET_RAW_PHONE_FEED_WS_DATA
 } from '../types';
 
 const initialState = {
@@ -14,7 +17,10 @@ const initialState = {
   selectedQuestionnaire: {},
   editedQuestionnaire: {},
   sessionViewConfig: {},
-  expectedEmotions: []
+  expectedEmotions: [],
+  rawPhoneFeedWSURL: 'default',
+  rawPhoneFeedWSData: 'default',
+  isRawPhoneFeedWSConnected: false
 };
 
 export function sessionReducer(state = initialState, action) {
@@ -50,6 +56,21 @@ export function sessionReducer(state = initialState, action) {
       return {
         ...state,
         sessionViewConfig: action.payload,
+      };
+    case SET_RAW_PHONE_FEED_WS_URL:
+      return {
+        ...state,
+        rawPhoneFeedWSURL: action.payload,
+      };
+    case SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS:
+      return {
+        ...state,
+        isRawPhoneFeedWSConnected: action.payload,
+      };
+    case SET_RAW_PHONE_FEED_WS_DATA:
+      return {
+        ...state,
+        rawPhoneFeedWSData: action.payload,
       };
     default:
       return state;

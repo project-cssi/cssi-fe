@@ -449,3 +449,18 @@ legend {
 .inline-block {
   display: inline-block !important;
 }
+
+/** 11. Page States **/
+.empty-placeholder {
+  text-align: center;
+  padding: 4% 15%;
+  .icon {
+    height: 50px;
+  }
+  .main-title {
+    margin: 5px 0 10px 0;
+  }
+  .sub-title {
+    margin: 5px 0 10px 0;
+  }
+}

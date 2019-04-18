@@ -280,5 +280,17 @@
     .questionnaire-wrapper {
       padding: 2% 5%;
     }
+    .feed-wrapper {
+      padding: 2% 8%;
+      .phone-feed-wrapper {
+        padding: 10px 20px;
+        .phone-feed-container {
+          img {
+            max-height: $phone-feed-max-height;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
   }
 }

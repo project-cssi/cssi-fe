@@ -5,7 +5,9 @@ import {
   SET_SESSION_VIEW_CONFIG,
   SET_SELECTED_QUESTIONNAIRE,
   UPDATE_QUESTIONNAIRE,
-  SET_EXPECTED_EMOTIONS
+  SET_EXPECTED_EMOTIONS,
+  SET_RAW_PHONE_FEED_WS_URL,
+  SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS, SET_RAW_PHONE_FEED_WS_DATA
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
@@ -22,7 +24,7 @@ export const fetchQuestionnaires = () => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Questionnaires, fetchQuestionnaires()]: HTTP GET - Callback Error', error);
+      //console.log('[ERROR]', ' [Sessions, fetchQuestionnaires()]: HTTP GET - Callback Error', error);
     });
 };
 
@@ -37,7 +39,7 @@ export const createQuestionnaire = data => (dispatch) => {
       dispatch(setSelectedQuestionnaire(response.data.data))
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Questionnaires, createQuestionnaire()]: HTTP POST - Callback Error', error);
+      //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
     });
 };
 
@@ -55,7 +57,7 @@ export const updateQuestionnaire = data => (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log('[ERROR]', ' [Questionnaires, updateQuestionnaire()]: HTTP PATCH - Callback Error', error);
+      //console.log('[ERROR]', ' [Sessions, updateQuestionnaire()]: HTTP PATCH - Callback Error', error);
     });
 };
 
@@ -69,6 +71,34 @@ export const setSelectedQuestionnaire = data => (dispatch) => {
 export const setExpectedEmotions = data => (dispatch) => {
   return dispatch({
     type: SET_EXPECTED_EMOTIONS,
+    payload: data,
+  });
+};
+
+export const setRawPhoneFeedWSURL = data => (dispatch) => {
+  const endpoint = data + '/wsinfo';
+  return http.get(endpoint)
+    .then((response) => {
+      return dispatch({
+        type: SET_RAW_PHONE_FEED_WS_URL,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      //console.log('[ERROR]', ' [Sessions, setRawPhoneFeedWSURL()]: HTTP PATCH - Callback Error', error);
+    });
+};
+
+export const setRawPhoneFeedWSData = data => (dispatch) => {
+  return dispatch({
+    type: SET_RAW_PHONE_FEED_WS_DATA,
+    payload: data,
+  });
+};
+
+export const setRawPhoneFeedWSConnectionStatus = data => (dispatch) => {
+  return dispatch({
+    type: SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
     payload: data,
   });
 };
