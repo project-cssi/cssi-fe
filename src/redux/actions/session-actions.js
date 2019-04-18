@@ -12,7 +12,8 @@ import {
   SET_SELECTED_CAMERA,
   SET_CAMERA_CONNECTION_STATUS,
   SET_SELECTED_APPLICATION,
-  INITIALIZE_SESSION
+  INITIALIZE_SESSION,
+  START_SESSION
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
@@ -31,6 +32,13 @@ export const initializeSession = data => (dispatch) => {
     .catch((error) => {
       //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
     });
+};
+
+export const startSession = data => (dispatch) => {
+  dispatch({
+    type: START_SESSION,
+    payload: data,
+  });
 };
 
 export const setSelectedApplication = app => (dispatch) => {
