@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import {
-  ADD_QUESTIONNAIRE,
   FETCH_QUESTIONNAIRES,
   SET_SESSION_VIEW_CONFIG,
   SET_SELECTED_QUESTIONNAIRE,
@@ -12,12 +11,27 @@ import {
   SET_LIST_OF_AVAILABLE_CAMERAS,
   SET_SELECTED_CAMERA,
   SET_CAMERA_CONNECTION_STATUS,
-  SET_SELECTED_APPLICATION
+  SET_SELECTED_APPLICATION,
+  INITIALIZE_SESSION
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
 
 const http = new HttpInterceptor();
+
+export const initializeSession = data => (dispatch) => {
+  const endpoint = API_ENDPOINTS.initializeSession;
+  return http.post(endpoint, data)
+    .then((response) => {
+      dispatch({
+        type: INITIALIZE_SESSION,
+        payload: response.data.data,
+      });
+    })
+    .catch((error) => {
+      //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
+    });
+};
 
 export const setSelectedApplication = app => (dispatch) => {
   return dispatch({

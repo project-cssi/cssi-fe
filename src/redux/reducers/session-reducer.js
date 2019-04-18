@@ -11,11 +11,15 @@ import {
   SET_RAW_PHONE_FEED_WS_DATA,
   SET_LIST_OF_AVAILABLE_CAMERAS,
   SET_SELECTED_CAMERA,
-  SET_CAMERA_CONNECTION_STATUS, SET_SELECTED_APPLICATION
+  SET_CAMERA_CONNECTION_STATUS,
+  SET_SELECTED_APPLICATION,
+  INITIALIZE_SESSION
 } from '../types';
 
 const initialState = {
-  session: {},
+  sessionTemp: {},
+  currentSession: {},
+  isSessionInitialized: false,
   questionnaires: [],
   newQuestionnaire: {},
   selectedApplication: {},
@@ -33,6 +37,13 @@ const initialState = {
 
 export function sessionReducer(state = initialState, action) {
   switch (action.type) {
+    case INITIALIZE_SESSION:
+      return {
+        ...state,
+        isSessionInitialized: true,
+        sessionTemp: {},
+        currentSession: action.payload,
+      };
     case FETCH_QUESTIONNAIRES:
       return {
         ...state,
@@ -53,17 +64,19 @@ export function sessionReducer(state = initialState, action) {
     case SET_SELECTED_APPLICATION:
       return {
         ...state,
+        sessionTemp: _.assign({}, state.sessionTemp, { app: action.payload.id}),
         selectedApplication: action.payload,
       };
     case SET_SELECTED_QUESTIONNAIRE:
       return {
         ...state,
-        session: _.assign({}, state.session, { questionnaire_id: action.payload.id}),
+        sessionTemp: _.assign({}, state.sessionTemp, { questionnaire: action.payload.id}),
         selectedQuestionnaire: action.payload,
       };
     case SET_EXPECTED_EMOTIONS:
       return {
         ...state,
+        sessionTemp: _.assign({}, state.sessionTemp, { expected_emotions: action.payload}),
         expectedEmotions: action.payload,
       };
     case SET_SESSION_VIEW_CONFIG:
