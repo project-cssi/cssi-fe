@@ -459,8 +459,14 @@ legend {
   }
   .main-title {
     margin: 5px 0 10px 0;
+    font-weight: $font-weight-normal;
   }
   .sub-title {
     margin: 5px 0 10px 0;
+    font-weight: $font-weight-light;
+  }
+  .extra-context {
+    font-size: $font-size-small;
+    font-weight: $font-weight-light;
   }
 }

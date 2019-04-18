@@ -7,7 +7,11 @@ import {
   UPDATE_QUESTIONNAIRE,
   SET_EXPECTED_EMOTIONS,
   SET_RAW_PHONE_FEED_WS_URL,
-  SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS, SET_RAW_PHONE_FEED_WS_DATA
+  SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
+  SET_RAW_PHONE_FEED_WS_DATA,
+  SET_LIST_OF_AVAILABLE_CAMERAS,
+  SET_SELECTED_CAMERA,
+  SET_CAMERA_CONNECTION_STATUS
 } from '../types';
 import {API_ENDPOINTS} from '../../api';
 import {HttpInterceptor} from '../../services';
@@ -99,6 +103,27 @@ export const setRawPhoneFeedWSData = data => (dispatch) => {
 export const setRawPhoneFeedWSConnectionStatus = data => (dispatch) => {
   return dispatch({
     type: SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
+    payload: data,
+  });
+};
+
+export const setCameraConnectionStatus = data => (dispatch) => {
+  return dispatch({
+    type: SET_CAMERA_CONNECTION_STATUS,
+    payload: data,
+  });
+};
+
+export const setListOfAvailableCameras = data => (dispatch) => {
+  return dispatch({
+    type: SET_LIST_OF_AVAILABLE_CAMERAS,
+    payload: data,
+  });
+};
+
+export const setSelectedCamera = data => (dispatch) => {
+  return dispatch({
+    type: SET_SELECTED_CAMERA,
     payload: data,
   });
 };

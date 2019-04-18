@@ -8,7 +8,10 @@ import {
   SET_EXPECTED_EMOTIONS,
   SET_RAW_PHONE_FEED_WS_URL,
   SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
-  SET_RAW_PHONE_FEED_WS_DATA
+  SET_RAW_PHONE_FEED_WS_DATA,
+  SET_LIST_OF_AVAILABLE_CAMERAS,
+  SET_SELECTED_CAMERA,
+  SET_CAMERA_CONNECTION_STATUS
 } from '../types';
 
 const initialState = {
@@ -20,7 +23,10 @@ const initialState = {
   expectedEmotions: [],
   rawPhoneFeedWSURL: 'default',
   rawPhoneFeedWSData: 'default',
-  isRawPhoneFeedWSConnected: false
+  isRawPhoneFeedWSConnected: false,
+  isCameraConnected: false,
+  availableCameras: [],
+  selectedCamera: null
 };
 
 export function sessionReducer(state = initialState, action) {
@@ -67,10 +73,25 @@ export function sessionReducer(state = initialState, action) {
         ...state,
         isRawPhoneFeedWSConnected: action.payload,
       };
+    case SET_CAMERA_CONNECTION_STATUS:
+      return {
+        ...state,
+        isCameraConnected: action.payload,
+      };
     case SET_RAW_PHONE_FEED_WS_DATA:
       return {
         ...state,
         rawPhoneFeedWSData: action.payload,
+      };
+    case SET_LIST_OF_AVAILABLE_CAMERAS:
+      return {
+        ...state,
+        availableCameras: action.payload,
+      };
+    case SET_SELECTED_CAMERA:
+      return {
+        ...state,
+        selectedCamera: action.payload,
       };
     default:
       return state;
