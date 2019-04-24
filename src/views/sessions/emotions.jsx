@@ -15,7 +15,7 @@ import disgustIcon from '../../assets/img/emotions/disgust.svg';
 import surpriseIcon from '../../assets/img/emotions/surprise.svg';
 import fearIcon from '../../assets/img/emotions/fear.svg';
 import angerIcon from '../../assets/img/emotions/anger.svg';
-import {navigate} from '../../services';
+import { navigate } from '../../services';
 import * as qs from 'query-string';
 
 class Emotions extends Component {
@@ -25,7 +25,7 @@ class Emotions extends Component {
       emotions: [
         {
           displayName: 'Happiness',
-          name: 'happiness',
+          name: 'happy',
           icon: happinessIcon,
           selected: false
         },
@@ -37,13 +37,13 @@ class Emotions extends Component {
         },
         {
           displayName: 'Sadness',
-          name: 'sadness',
+          name: 'sad',
           icon: sadnessIcon,
           selected: false
         },
         {
           displayName: 'Anger',
-          name: 'anger',
+          name: 'angry',
           icon: angerIcon,
           selected: false
         },
@@ -55,13 +55,13 @@ class Emotions extends Component {
         },
         {
           displayName: 'Fear',
-          name: 'fear',
+          name: 'scared',
           icon: fearIcon,
           selected: false
         },
         {
           displayName: 'Surprise',
-          name: 'surprise',
+          name: 'surprised',
           icon: surpriseIcon,
           selected: false
         }
@@ -71,7 +71,12 @@ class Emotions extends Component {
   }
 
   componentDidMount() {
-    const { actions, location, selectedApplication, selectedQuestionnaire } = this.props;
+    const {
+      actions,
+      location,
+      selectedApplication,
+      selectedQuestionnaire
+    } = this.props;
 
     const route = qs.parse(location.search);
     let notification = null;
@@ -106,14 +111,14 @@ class Emotions extends Component {
         actions.notifications.addNotification(notification);
         setTimeout(() => {
           let searchParams = '?type=pre&app=' + selectedApplication.id;
-          navigate('questionnaire', searchParams)
+          navigate('questionnaire', searchParams);
         }, 2000);
       }
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const {actions, expectedEmotions} = this.props;
+    const { actions, expectedEmotions } = this.props;
     if (nextProps.expectedEmotions) {
       if (!_.isEqual(expectedEmotions, nextProps.expectedEmotions)) {
         actions.sessions.initializeSession(nextProps.sessionTemp);
