@@ -1,6 +1,7 @@
-const BASE_API = process.env.NODE_ENV === 'production'
-  ? process.env.REACT_APP_PROD_API_ENDPOINT
-  : process.env.REACT_APP_DEV_API_ENDPOINT;
+const BASE_API =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_PROD_API_ENDPOINT
+    : process.env.REACT_APP_DEV_API_ENDPOINT;
 
 const API_ENDPOINTS = {
   authorize: `${BASE_API}/auth/`,
@@ -19,10 +20,10 @@ const API_ENDPOINTS = {
   editApplication: `${BASE_API}/applications/{}/`,
   deleteApplication: `${BASE_API}/applications/{}/`,
   getQuestionnaires: `${BASE_API}/questionnaires/`,
-  getQuestionnaireInfo: `${BASE_API}/questionnaires/{}/`,
+  getQuestionnaireInfo: `${BASE_API}/questionnaires/{}`,
   updateQuestionnaire: `${BASE_API}/questionnaires/{}/`,
   createQuestionnaire: `${BASE_API}/questionnaires/`,
-  initializeSession: `${BASE_API}/sessions/`,
+  initializeSession: `${BASE_API}/sessions/`
 };
 
 export { API_ENDPOINTS };
