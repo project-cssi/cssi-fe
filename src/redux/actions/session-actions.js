@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
   FETCH_QUESTIONNAIRES,
   SET_SESSION_VIEW_CONFIG,
@@ -13,7 +12,8 @@ import {
   SET_CAMERA_CONNECTION_STATUS,
   SET_SELECTED_APPLICATION,
   INITIALIZE_SESSION,
-  START_SESSION
+  SET_SESSION_STATUS,
+  SET_CURRENT_SESSION
 } from '../types';
 import { API_ENDPOINTS } from '../../api';
 import { HttpInterceptor } from '../../services';
@@ -35,9 +35,23 @@ export const initializeSession = data => dispatch => {
     });
 };
 
-export const startSession = data => dispatch => {
+export const getSessionInfo = (id) => (dispatch) => {
+  const endpoint = API_ENDPOINTS.getSessionInfo.format(id);
+  return http.get(endpoint)
+    .then((response) => {
+      dispatch({
+        type: SET_CURRENT_SESSION,
+        payload: response.data.data,
+      });
+    })
+    .catch((error) => {
+      // console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
+    });
+};
+
+export const setSessionStatus = data => dispatch => {
   dispatch({
-    type: START_SESSION,
+    type: SET_SESSION_STATUS,
     payload: data
   });
 };
@@ -94,17 +108,21 @@ export const createQuestionnaire = data => dispatch => {
     });
 };
 
-export const updateQuestionnaire = data => dispatch => {
-  const endpoint = API_ENDPOINTS.updateQuestionnaire.format(data.id);
+export const updateQuestionnaire = (data, id) => dispatch => {
+  const endpoint = API_ENDPOINTS.updateQuestionnaire.format(id);
   const body = {
-    post: data.post
+    post: data
   };
   return http
     .patch(endpoint, body)
     .then(response => {
       dispatch({
         type: UPDATE_QUESTIONNAIRE,
-        payload: _.assign({}, data, response.data.data)
+        payload: response.data.data
+      });
+      dispatch({
+        type: SET_SELECTED_QUESTIONNAIRE,
+        payload: response.data.data
       });
     })
     .catch(error => {
