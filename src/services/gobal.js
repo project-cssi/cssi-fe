@@ -36,8 +36,11 @@ export function navigate(route, searchParams) {
   if(route === 'evaluation') {
     path = '/new-session/evaluation';
   }
+  if(route === 'sessions') {
+    path = '/sessions';
+  }
   history.push({
     pathname: path,
     search: searchParams
-  })
+  });
 }
