@@ -1,22 +1,16 @@
 import {
-  DashboardView,
   ApplicationsView,
   NewSessionView,
   QuestionnaireView,
   EmotionsView,
-  EvaluationView
+  EvaluationView,
+  SessionsView
 } from '../views';
-import testIcon from '../assets/img/icons/test.svg';
-import dashboardIcon from '../assets/img/icons/dashboard.svg';
+import testIcon from '../assets/img/icons/questionnaire.svg';
 import hmdIcon from '../assets/img/icons/hmd.svg';
+import sessionsIcon from '../assets/img/icons/session-history.svg';
 
 const dashboard = [
-  {
-    path: '/dashboard', name: 'Dashboard', icon: dashboardIcon, component: DashboardView, restrictionLevel: 0,
-  },
-  {
-    path: '/applications', name: 'Applications', icon: hmdIcon, component: ApplicationsView, restrictionLevel: 0,
-  },
   {
     path: '/new-session', exact: true, name: 'New Session', icon: testIcon, component: NewSessionView, restrictionLevel: 0,
   },
@@ -30,7 +24,13 @@ const dashboard = [
     path: '/new-session/evaluation', hide: true, name: 'Evaluation', icon: testIcon, component: EvaluationView, restrictionLevel: 0,
   },
   {
-    redirect: true, path: '/', pathTo: '/dashboard', name: 'Dashboard', restrictionLevel: 0,
+    path: '/sessions', name: 'Sessions', icon: sessionsIcon, component: SessionsView, restrictionLevel: 0,
+  },
+  {
+    path: '/applications', name: 'Applications', icon: hmdIcon, component: ApplicationsView, restrictionLevel: 0,
+  },
+  {
+    redirect: true, path: '/', pathTo: '/new-session', name: 'New Session', restrictionLevel: 0,
   },
 ];
 

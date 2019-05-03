@@ -142,8 +142,8 @@ class Emotions extends Component {
     const _emotions = _.cloneDeep(emotions);
 
     // Find index and replace item
-    const index = _.findIndex(_emotions, emotion);
-    _emotions.splice(index, 1, _emotion);
+    const idx = _.findIndex(_emotions, emotion);
+    _emotions.splice(idx, 1, _emotion);
 
     this.setState({ emotions: _emotions });
 
@@ -153,7 +153,7 @@ class Emotions extends Component {
       _selectedEmotions.push(_emotion.name);
     } else {
       const idx = _.indexOf(_selectedEmotions, _emotion.name);
-      _selectedEmotions.splice(idx, 1, _emotion.name);
+      _selectedEmotions.splice(idx, 1);
     }
 
     this.setState({ selectedEmotions: _selectedEmotions });

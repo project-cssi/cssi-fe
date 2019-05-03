@@ -13,12 +13,30 @@ import {
   SET_SELECTED_APPLICATION,
   INITIALIZE_SESSION,
   SET_SESSION_STATUS,
-  SET_CURRENT_SESSION
+  SET_CURRENT_SESSION,
+  FETCH_SESSIONS,
+  SET_SELECTED_SESSION
 } from '../types';
 import { API_ENDPOINTS } from '../../api';
 import { HttpInterceptor } from '../../services';
 
 const http = new HttpInterceptor();
+
+export const fetchSessions = () => dispatch => {
+  const endpoint = API_ENDPOINTS.fetchSessions;
+  return http
+    .get(endpoint)
+    .then(response => {
+      dispatch({
+        type: FETCH_SESSIONS,
+        payload: response.data.data
+      });
+    })
+    .catch(error => {
+      //console.log('[ERROR]', ' [Sessions, fetchQuestionnaires()]: HTTP GET - Callback Error', error);
+    });
+};
+
 
 export const initializeSession = data => dispatch => {
   const endpoint = API_ENDPOINTS.initializeSession;
@@ -33,6 +51,13 @@ export const initializeSession = data => dispatch => {
     .catch(error => {
       //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
     });
+};
+
+export const setSelectedSession = data => dispatch => {
+  dispatch({
+    type: SET_SELECTED_SESSION,
+    payload: data,
+  });
 };
 
 export const getSessionInfo = (id) => (dispatch) => {

@@ -1,0 +1,245 @@
+.session-report {
+  padding: 1% 4%;
+  .report-header {
+    margin: 5px 0 0;
+    padding: 0 0 15px 0;
+    border-bottom: 3pt solid $secondary-color;
+    .info {
+      display: inline-flex;
+      align-items: center;
+      .logo {
+        max-width: 60%;
+        max-height: 90px;
+        float: left;
+        margin-right: 15px;
+      }
+    }
+    .session-info {
+      text-align: right;
+      .title {
+        font-size: 36px;
+        text-transform: uppercase;
+      }
+      .id {
+        font-size: 15px;
+      }
+      .date {
+        font-size: 12px;
+      }
+    }
+  }
+  .session-body {
+    padding: 15px 0 0 0;
+    .meta {
+      h6 {
+        text-decoration: underline;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .app-details {
+        .key {
+          width: 40%;
+          display: inline-block;
+          font-weight: 500;
+        }
+        .value {
+          width: 60%;
+          display: inline-block;
+        }
+      }
+    }
+    .session-table, .parts-table {
+      .table-head {
+        display: flex;
+        > div {
+          float: left;
+          padding: 8px 10px;
+          font-size: 12px;
+          text-transform: uppercase;
+          background-color: $lighter-gray !important;
+          border-right: 1px solid $medium-gray;
+          border-bottom: 1px solid $medium-gray;
+          color: $color-black;
+          font-weight: 600;
+          &:last-child {
+            border-right: 0 solid transparent;
+          }
+        }
+      }
+      .table-body {
+        .table-row {
+          display: flex;
+          min-height: 42px;
+          .table-data {
+            float: left;
+            padding: 5px 10px;
+          }
+        }
+      }
+    }
+    .session-table {
+      border: 1px solid $medium-gray;
+      .table-head {
+        > div {
+          &.details {
+            width: 70%;
+          }
+          &.score {
+            width: 30%;
+          }
+        }
+      }
+      .table-body {
+        .table-item {
+          border-bottom: 1px solid $medium-gray;
+          &:last-child {
+            border-bottom: 0 solid transparent;
+          }
+          .table-row {
+            .table-data {
+              &.details {
+                width: 70%;
+                border-right: 1px solid $medium-gray;
+                .name {
+                  font-size: 14px;
+                  word-break: break-word;
+                }
+                .description {
+                  font-size: 10px;
+                }
+              }
+              &.score {
+                width: 30%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .parts-table {
+      color: $default-font-color-light !important;
+      .table-head {
+        > div {
+          font-size: 10px;
+          &.details {
+            width: 70%;
+          }
+          &.score {
+            width: 30%;
+          }
+        }
+      }
+      .table-body {
+        .table-row {
+          min-height: 25px !important;
+          .table-data {
+            padding: 2px 10px;
+            &.details {
+              width: 70%;
+              padding-left: 40px;
+              &.heading {
+                color: darken($default-font-color-light, 10);
+                text-decoration: underline;
+                margin-bottom: 5px;
+                margin-top: 5px;
+                padding-left: 25px;
+              }
+              .name {
+                font-size: 14px;
+              }
+              .description {
+                font-size: 10px;
+              }
+            }
+            &.score {
+              width: 30%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .session-number {
+    font-size: 16px;
+    span {
+      font-size: 12px;
+    }
+  }
+  .session-footer {
+    margin: 0 0 5px 0;
+    padding: 5px 0 0 0;
+    border-top: 3pt solid $secondary-color;
+    .terms {
+      h6 {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: unset;
+        margin-bottom: 5px;
+      }
+      p {
+        font-size: 10px;
+        line-height: unset;
+      }
+    }
+    .contact-info {
+      text-align: center;
+      h6 {
+        margin-bottom: 0;
+        font-size: 10px;
+        color: $form-helper-color;
+      }
+      p {
+        font-size: 10px;
+      }
+      .width-12 {
+        width: 100%;
+        display: inline-block;
+      }
+      .width-6 {
+        width: 50%;
+        display: inline-block;
+      }
+      .width-4 {
+        width: 33%;
+        display: inline-block;
+      }
+      .width-3 {
+        width: 25%;
+        display: inline-block;
+      }
+      .width-2 {
+        width: 20%;
+        display: inline-block;
+      }
+      .width-1 {
+        width: 10%;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.session-score-table {
+  padding: 20px 5px;
+  .table th, .table td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid transparent;
+  }
+  .table th {
+    text-align: right;
+    font-weight: unset;
+  }
+  .table td {
+    text-align: right;
+    font-weight: unset;
+  }
+  .grand-total {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

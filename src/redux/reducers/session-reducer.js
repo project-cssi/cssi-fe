@@ -15,10 +15,14 @@ import {
   SET_SELECTED_APPLICATION,
   INITIALIZE_SESSION,
   SET_SESSION_STATUS,
-  SET_CURRENT_SESSION
+  SET_CURRENT_SESSION,
+  FETCH_SESSIONS,
+  SET_SELECTED_SESSION
 } from '../types';
 
 const initialState = {
+  sessions: [],
+  selectedSession: {},
   sessionTemp: {},
   currentSession: {},
   isSessionInitialized: false,
@@ -40,12 +44,22 @@ const initialState = {
 
 export function sessionReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_SESSIONS:
+      return {
+        ...state,
+        sessions: action.payload,
+      };
     case INITIALIZE_SESSION:
       return {
         ...state,
         isSessionInitialized: true,
         sessionTemp: {},
         currentSession: action.payload,
+      };
+    case SET_SELECTED_SESSION:
+      return {
+        ...state,
+        selectedSession: action.payload,
       };
     case SET_CURRENT_SESSION:
       return {
