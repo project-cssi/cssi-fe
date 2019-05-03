@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
   FETCH_QUESTIONNAIRES,
   SET_SESSION_VIEW_CONFIG,
@@ -12,139 +11,185 @@ import {
   SET_SELECTED_CAMERA,
   SET_CAMERA_CONNECTION_STATUS,
   SET_SELECTED_APPLICATION,
-  INITIALIZE_SESSION
+  INITIALIZE_SESSION,
+  SET_SESSION_STATUS,
+  SET_CURRENT_SESSION
 } from '../types';
-import {API_ENDPOINTS} from '../../api';
-import {HttpInterceptor} from '../../services';
+import { API_ENDPOINTS } from '../../api';
+import { HttpInterceptor } from '../../services';
 
 const http = new HttpInterceptor();
 
-export const initializeSession = data => (dispatch) => {
+export const initializeSession = data => dispatch => {
   const endpoint = API_ENDPOINTS.initializeSession;
-  return http.post(endpoint, data)
-    .then((response) => {
+  return http
+    .post(endpoint, data)
+    .then(response => {
       dispatch({
         type: INITIALIZE_SESSION,
-        payload: response.data.data,
+        payload: response.data.data
       });
     })
-    .catch((error) => {
+    .catch(error => {
       //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
     });
 };
 
-export const setSelectedApplication = app => (dispatch) => {
-  return dispatch({
-    type: SET_SELECTED_APPLICATION,
-    payload: app,
-  });
-};
-
-export const fetchQuestionnaires = () => (dispatch) => {
-  const endpoint = API_ENDPOINTS.getQuestionnaires;
+export const getSessionInfo = (id) => (dispatch) => {
+  const endpoint = API_ENDPOINTS.getSessionInfo.format(id);
   return http.get(endpoint)
     .then((response) => {
       dispatch({
-        type: FETCH_QUESTIONNAIRES,
+        type: SET_CURRENT_SESSION,
         payload: response.data.data,
       });
     })
     .catch((error) => {
+      // console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
+    });
+};
+
+export const setSessionStatus = data => dispatch => {
+  dispatch({
+    type: SET_SESSION_STATUS,
+    payload: data
+  });
+};
+
+export const setSelectedApplication = app => dispatch => {
+  return dispatch({
+    type: SET_SELECTED_APPLICATION,
+    payload: app
+  });
+};
+
+export const fetchQuestionnaires = () => dispatch => {
+  const endpoint = API_ENDPOINTS.getQuestionnaires;
+  return http
+    .get(endpoint)
+    .then(response => {
+      dispatch({
+        type: FETCH_QUESTIONNAIRES,
+        payload: response.data.data
+      });
+    })
+    .catch(error => {
       //console.log('[ERROR]', ' [Sessions, fetchQuestionnaires()]: HTTP GET - Callback Error', error);
     });
 };
 
-export const createQuestionnaire = data => (dispatch) => {
-  const endpoint = API_ENDPOINTS.createQuestionnaire;
-  return http.post(endpoint, data)
-    .then((response) => {
+export const getQuestionnaireInfo = id => dispatch => {
+  const endpoint = API_ENDPOINTS.getQuestionnaireInfo.format(id);
+  return http
+    .get(endpoint)
+    .then(response => {
       dispatch({
         type: SET_SELECTED_QUESTIONNAIRE,
-        payload: response.data.data,
+        payload: response.data.data
       });
     })
-    .catch((error) => {
+    .catch(error => {
+      // console.log('[ERROR]', ' [Applications, fetchApplications()]: HTTP GET - Callback Error', error);
+    });
+};
+
+export const createQuestionnaire = data => dispatch => {
+  const endpoint = API_ENDPOINTS.createQuestionnaire;
+  return http
+    .post(endpoint, data)
+    .then(response => {
+      dispatch({
+        type: SET_SELECTED_QUESTIONNAIRE,
+        payload: response.data.data
+      });
+    })
+    .catch(error => {
       //console.log('[ERROR]', ' [Sessions, createQuestionnaire()]: HTTP POST - Callback Error', error);
     });
 };
 
-export const updateQuestionnaire = data => (dispatch) => {
-  const endpoint = API_ENDPOINTS.updateQuestionnaire
-    .format(data.id);
+export const updateQuestionnaire = (data, id) => dispatch => {
+  const endpoint = API_ENDPOINTS.updateQuestionnaire.format(id);
   const body = {
-    post: data.post
+    post: data
   };
-  return http.patch(endpoint, body)
-    .then((response) => {
+  return http
+    .patch(endpoint, body)
+    .then(response => {
       dispatch({
         type: UPDATE_QUESTIONNAIRE,
-        payload: _.assign({}, data, response.data.data),
+        payload: response.data.data
+      });
+      dispatch({
+        type: SET_SELECTED_QUESTIONNAIRE,
+        payload: response.data.data
       });
     })
-    .catch((error) => {
+    .catch(error => {
       //console.log('[ERROR]', ' [Sessions, updateQuestionnaire()]: HTTP PATCH - Callback Error', error);
     });
 };
 
-export const setExpectedEmotions = data => (dispatch) => {
+export const setExpectedEmotions = data => dispatch => {
   dispatch({
     type: SET_EXPECTED_EMOTIONS,
-    payload: data,
+    payload: data
   });
 };
 
-export const setRawPhoneFeedWSURL = data => (dispatch) => {
+export const setRawPhoneFeedWSURL = data => dispatch => {
   const endpoint = data + '/wsinfo';
-  return http.get(endpoint)
-    .then((response) => {
+  return http
+    .get(endpoint)
+    .then(response => {
       dispatch({
         type: SET_RAW_PHONE_FEED_WS_URL,
-        payload: response.data,
+        payload: response.data
       });
     })
-    .catch((error) => {
+    .catch(error => {
       //console.log('[ERROR]', ' [Sessions, setRawPhoneFeedWSURL()]: HTTP PATCH - Callback Error', error);
     });
 };
 
-export const setRawPhoneFeedWSData = data => (dispatch) => {
+export const setRawPhoneFeedWSData = data => dispatch => {
   dispatch({
     type: SET_RAW_PHONE_FEED_WS_DATA,
-    payload: data,
+    payload: data
   });
 };
 
-export const setRawPhoneFeedWSConnectionStatus = data => (dispatch) => {
+export const setRawPhoneFeedWSConnectionStatus = data => dispatch => {
   dispatch({
     type: SET_RAW_PHONE_FEED_WS_CONNECTION_STATUS,
-    payload: data,
+    payload: data
   });
 };
 
-export const setCameraConnectionStatus = data => (dispatch) => {
+export const setCameraConnectionStatus = data => dispatch => {
   dispatch({
     type: SET_CAMERA_CONNECTION_STATUS,
-    payload: data,
+    payload: data
   });
 };
 
-export const setListOfAvailableCameras = data => (dispatch) => {
+export const setListOfAvailableCameras = data => dispatch => {
   dispatch({
     type: SET_LIST_OF_AVAILABLE_CAMERAS,
-    payload: data,
+    payload: data
   });
 };
 
-export const setSelectedCamera = data => (dispatch) => {
+export const setSelectedCamera = data => dispatch => {
   dispatch({
     type: SET_SELECTED_CAMERA,
-    payload: data,
+    payload: data
   });
 };
 
-export const setSessionViewConfig = data => (dispatch) => {
+export const setSessionViewConfig = data => dispatch => {
   dispatch({
     type: SET_SESSION_VIEW_CONFIG,
-    payload: data,
+    payload: data
   });
 };

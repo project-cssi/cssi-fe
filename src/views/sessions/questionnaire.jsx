@@ -26,45 +26,68 @@ class Questionnaire extends Component {
       } else if (route.type === 'post') {
         title = 'Post Exposure Questionnaire';
       }
-    }
 
-    const questionnaireViewConfig = {
-      title: title,
-      type: route.type
-    };
-    actions.sessions.setSessionViewConfig(
-      _.assign(viewConfig, { questionnaire: questionnaireViewConfig })
-    );
+      const questionnaireViewConfig = {
+        id: route.q_id,
+        title: title,
+        type: route.type
+      };
+      actions.sessions.setSessionViewConfig(
+        _.assign({}, viewConfig, { questionnaire: questionnaireViewConfig })
+      );
 
-    // Check if an application is selected. If not show error and redirect to app page.
-    if (_.isEmpty(selectedApplication)) {
-      if (route.app) {
-        let appId = route.app;
-        actions.applications.getApplicationInfo(appId);
-      } else {
-        const notification = {
-          level: 3,
-          message:
-            'You have not selected an application. The page will be automatically redirected.'
-        };
-        actions.notifications.addNotification(notification);
-        setTimeout(() => {
-          navigate('newSession');
-        }, 2000);
+      // Check if an application is selected. If not show error and redirect to app page.
+      if (route.type === 'pre') {
+        if (_.isEmpty(selectedApplication)) {
+          if (route.app) {
+            let appId = route.app;
+            actions.applications.getApplicationInfo(appId);
+          } else {
+            const notification = {
+              level: 3,
+              message:
+                'You have not selected an application. The page will be automatically redirected.'
+            };
+            actions.notifications.addNotification(notification);
+            setTimeout(() => {
+              navigate('newSession');
+            }, 2000);
+          }
+        }
+      } else if (route.type === 'post') {
+        if (!route.session_id) {
+          const notification = {
+            level: 3,
+            message:
+              'You have not completed a test session. The page will be automatically redirected.'
+          };
+          actions.notifications.addNotification(notification);
+          setTimeout(() => {
+            navigate('newSession');
+          }, 2000);
+        }
       }
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { selectedQuestionnaire } = this.props;
+    const { selectedQuestionnaire, location } = this.props;
+
+    const route = qs.parse(location.search);
+
     if (nextProps.selectedQuestionnaire) {
       if (!_.isEqual(selectedQuestionnaire, nextProps.selectedQuestionnaire)) {
-        let searchParams =
-          '?app=' +
-          nextProps.selectedApplication.id +
-          '&q_id=' +
-          nextProps.selectedQuestionnaire.id;
-        navigate('emotions', searchParams);
+        if (route.type === 'pre') {
+          let searchParams =
+            '?app=' +
+            nextProps.selectedApplication.id +
+            '&q_id=' +
+            nextProps.selectedQuestionnaire.id;
+          navigate('emotions', searchParams);
+        } else if (route.type === 'post') {
+          let searchParams = '?session_id=' + route.session_id;
+          navigate('sessions', searchParams);
+        }
       }
     }
   }
@@ -103,7 +126,13 @@ class Questionnaire extends Component {
                   title={''}
                   content={
                     <div className="questionnaire-wrapper">
-                      <CreateQuestionnaireForm config={{ type: 'pre' }} />
+                      <CreateQuestionnaireForm
+                        config={
+                          viewConfig.questionnaire
+                            ? viewConfig.questionnaire
+                            : {}
+                        }
+                      />
                     </div>
                   }
                 />

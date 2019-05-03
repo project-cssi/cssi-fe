@@ -13,13 +13,16 @@ import {
   SET_SELECTED_CAMERA,
   SET_CAMERA_CONNECTION_STATUS,
   SET_SELECTED_APPLICATION,
-  INITIALIZE_SESSION
+  INITIALIZE_SESSION,
+  SET_SESSION_STATUS,
+  SET_CURRENT_SESSION
 } from '../types';
 
 const initialState = {
   sessionTemp: {},
   currentSession: {},
   isSessionInitialized: false,
+  sessionStatus: 'default',
   questionnaires: [],
   newQuestionnaire: {},
   selectedApplication: {},
@@ -43,6 +46,16 @@ export function sessionReducer(state = initialState, action) {
         isSessionInitialized: true,
         sessionTemp: {},
         currentSession: action.payload,
+      };
+    case SET_CURRENT_SESSION:
+      return {
+        ...state,
+        currentSession: action.payload,
+      };
+    case SET_SESSION_STATUS:
+      return {
+        ...state,
+        sessionStatus: action.payload,
       };
     case FETCH_QUESTIONNAIRES:
       return {

@@ -1,17 +1,16 @@
 import _ from 'lodash';
-import {createQuestionnaire} from '../../../redux/actions/session-actions';
+import {createQuestionnaire, updateQuestionnaire} from '../../../redux/actions/session-actions';
 
 function submit(values, dispatch, props) {
-  let body = {
-    pre: {},
-    post: {}
-  };
-
   if (props.config.type === 'pre') {
+    let body = {
+      pre: {},
+      post: {}
+    };
     _.assign(body.pre, values);
     dispatch(createQuestionnaire(body));
   } else if (props.config.type === 'post') {
-    _.assign(body.post, values)
+    dispatch(updateQuestionnaire(values, props.config.id));
   }
 }
 
