@@ -21,9 +21,10 @@ const API_ENDPOINTS = {
   deleteApplication: `${BASE_API}/applications/{}/`,
   getQuestionnaires: `${BASE_API}/questionnaires/`,
   getQuestionnaireInfo: `${BASE_API}/questionnaires/{}`,
-  updateQuestionnaire: `${BASE_API}/questionnaires/{}/`,
+  updateQuestionnaire: `${BASE_API}/questionnaires/{}/post`,
   createQuestionnaire: `${BASE_API}/questionnaires/`,
-  initializeSession: `${BASE_API}/sessions/`
+  initializeSession: `${BASE_API}/sessions/`,
+  getSessionInfo: `${BASE_API}/sessions/{}`
 };
 
 export { API_ENDPOINTS };
