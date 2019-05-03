@@ -149,11 +149,11 @@ class Emotions extends Component {
 
     const _selectedEmotions = _.cloneDeep(selectedEmotions);
 
-    if (_emotion.selected) {
+    if (!emotion.selected) {
       _selectedEmotions.push(_emotion.name);
     } else {
-      const index_selected = _.findIndex(_selectedEmotions, _emotion.name);
-      _selectedEmotions.splice(index_selected, 1, _emotion.name);
+      const idx = _.indexOf(_selectedEmotions, _emotion.name);
+      _selectedEmotions.splice(idx, 1, _emotion.name);
     }
 
     this.setState({ selectedEmotions: _selectedEmotions });
