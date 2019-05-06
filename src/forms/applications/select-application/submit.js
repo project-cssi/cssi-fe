@@ -1,4 +1,4 @@
-import { setSelectedApplication } from '../../../redux/actions/application-actions';
+import { setSelectedApplication } from '../../../redux/actions/session-actions';
 import { closeModal } from '../../../redux/actions/modal-actions';
 
 const selectApplicationModalKey = 'select-application-modal';

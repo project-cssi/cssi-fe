@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   Switch,
   Route,
 } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { AuthRoutes } from '../routes';
+import {connect} from 'react-redux';
+import {AuthRoutes} from '../routes';
 import {
   MainLoaderSpinner,
   Notifications,
@@ -19,7 +19,7 @@ class Auth extends Component {
   }
 
   getPageClass() {
-    const { location } = this.props;
+    const {location} = this.props;
     let pageClass = '';
     if (location.pathname === '/login') {
       pageClass = ' login-page';
@@ -30,22 +30,25 @@ class Auth extends Component {
   }
 
   render() {
-    const { loaderStatus } = this.props;
+    const {loaderStatus} = this.props;
     return (
       <div className="wrapper wrapper-full-page">
-        <Notifications />
-        <MainLoaderSpinner active={loaderStatus} type="ball-beat" />
+        <Notifications/>
+        <MainLoaderSpinner active={loaderStatus} type="ball-beat"/>
         <div className={`full-page${this.getPageClass()}`} data-color="white">
           <div className="content">
             <Switch>
               {
-                AuthRoutes.map((prop, key) => (
-                  <Route path={prop.path} component={prop.component} key={key} />
-                ))
+                AuthRoutes.map((prop, key) => {
+                  if (prop.exact) {
+                    return <Route path={prop.path} component={prop.component} key={key} exact/>
+                  }
+                  return <Route path={prop.path} component={prop.component} key={key}/>
+                })
               }
             </Switch>
           </div>
-          <div className="full-page-background" />
+          <div className="full-page-background"/>
         </div>
       </div>
     );

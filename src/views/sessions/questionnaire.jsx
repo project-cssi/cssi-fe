@@ -1,27 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Grid,
-  Row,
-  Col,
-} from 'react-bootstrap';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { Grid, Row, Col } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import * as applicationActionCreators from '../../redux/actions/application-actions';
 import * as sessionActionCreators from '../../redux/actions/session-actions';
+import * as notificationActionCreators from '../../redux/actions/notification-actions';
 import _ from 'lodash';
 import * as qs from 'query-string';
-import {
-  Card
-} from '../../components';
-import {CustomButton as Button} from '../../elements'
-import {CreateQuestionnaireForm} from '../../forms';
+import { Card } from '../../components';
+import { CreateQuestionnaireForm } from '../../forms';
+import { navigate } from '../../services';
 
 class Questionnaire extends Component {
-
   componentDidMount() {
-    const {actions, location, viewConfig} = this.props;
+    const { actions, location, viewConfig, selectedApplication } = this.props;
 
     const route = qs.parse(location.search);
     let title = null;
@@ -32,34 +26,97 @@ class Questionnaire extends Component {
       } else if (route.type === 'post') {
         title = 'Post Exposure Questionnaire';
       }
-    }
 
-    const questionnaireViewConfig = {
-      title: title,
-      type: route.type,
-    };
-    actions.sessions.setSessionViewConfig(_.assign(viewConfig, {questionnaire: questionnaireViewConfig}));
+      const questionnaireViewConfig = {
+        id: route.q_id,
+        title: title,
+        type: route.type
+      };
+      actions.sessions.setSessionViewConfig(
+        _.assign({}, viewConfig, { questionnaire: questionnaireViewConfig })
+      );
+
+      // Check if an application is selected. If not show error and redirect to app page.
+      if (route.type === 'pre') {
+        if (_.isEmpty(selectedApplication)) {
+          if (route.app) {
+            let appId = route.app;
+            actions.applications.getApplicationInfo(appId);
+          } else {
+            const notification = {
+              level: 3,
+              message:
+                'You have not selected an application. The page will be automatically redirected.'
+            };
+            actions.notifications.addNotification(notification);
+            setTimeout(() => {
+              navigate('newSession');
+            }, 2000);
+          }
+        }
+      } else if (route.type === 'post') {
+        if (!route.session_id) {
+          const notification = {
+            level: 3,
+            message:
+              'You have not completed a test session. The page will be automatically redirected.'
+          };
+          actions.notifications.addNotification(notification);
+          setTimeout(() => {
+            navigate('newSession');
+          }, 2000);
+        }
+      }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { selectedQuestionnaire, location } = this.props;
+
+    const route = qs.parse(location.search);
+
+    if (nextProps.selectedQuestionnaire) {
+      if (!_.isEqual(selectedQuestionnaire, nextProps.selectedQuestionnaire)) {
+        if (route.type === 'pre') {
+          let searchParams =
+            '?app=' +
+            nextProps.selectedApplication.id +
+            '&q_id=' +
+            nextProps.selectedQuestionnaire.id;
+          navigate('emotions', searchParams);
+        } else if (route.type === 'post') {
+          let searchParams = '?session_id=' + route.session_id;
+          navigate('sessions', searchParams);
+        }
+      }
+    }
   }
 
   render() {
-    const {
-      viewConfig, selectedApplication
-    } = this.props;
+    const { viewConfig, selectedApplication } = this.props;
 
     return (
       <div className="main-content no-padding session-page">
         <Grid fluid>
           <Row>
             <div className="sub-header">
-              <h5 className="text-white ml-3">Application: {selectedApplication.name}</h5>
+              <h5 className="text-white ml-3">
+                Application: {selectedApplication.name}
+              </h5>
             </div>
           </Row>
           <div className="main-session-content">
             <Row>
               <Col md={12}>
                 <div className="content-description text-center mb-4">
-                  <h2>{viewConfig.questionnaire ? viewConfig.questionnaire.title : 'Questionnaire'}</h2>
-                  <h5 className="text-muted font-weight-light">Please complete the following questionnaire</h5>
+                  <h2>
+                    {viewConfig.questionnaire
+                      ? viewConfig.questionnaire.title
+                      : 'Questionnaire'}
+                  </h2>
+                  <h5 className="text-muted font-weight-light">
+                    Please complete the following questionnaire
+                  </h5>
                 </div>
               </Col>
             </Row>
@@ -67,11 +124,17 @@ class Questionnaire extends Component {
               <Col md={6} mdOffset={3}>
                 <Card
                   title={''}
-                  content={(
+                  content={
                     <div className="questionnaire-wrapper">
-                      <CreateQuestionnaireForm config={{type: 'pre'}}/>
+                      <CreateQuestionnaireForm
+                        config={
+                          viewConfig.questionnaire
+                            ? viewConfig.questionnaire
+                            : {}
+                        }
+                      />
                     </div>
-                  )}
+                  }
                 />
               </Col>
             </Row>
@@ -83,17 +146,18 @@ class Questionnaire extends Component {
 }
 
 const injectedPropTypes = {
-  actions: PropTypes.shape({}),
+  actions: PropTypes.shape({})
 };
 
 Questionnaire.propTypes = {
-  ...injectedPropTypes,
+  ...injectedPropTypes
 };
 
 function mapStateToProps(state) {
   return {
-    selectedApplication: state.applications.selectedApplication,
-    viewConfig: state.sessions.sessionViewConfig,
+    selectedApplication: state.sessions.selectedApplication,
+    selectedQuestionnaire: state.sessions.selectedQuestionnaire,
+    viewConfig: state.sessions.sessionViewConfig
   };
 }
 
@@ -102,8 +166,12 @@ function mapDispatchToProps(dispatch) {
     actions: {
       sessions: bindActionCreators(sessionActionCreators, dispatch),
       applications: bindActionCreators(applicationActionCreators, dispatch),
-    },
+      notifications: bindActionCreators(notificationActionCreators, dispatch)
+    }
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questionnaire);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Questionnaire);

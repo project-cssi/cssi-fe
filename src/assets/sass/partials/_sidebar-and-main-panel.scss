@@ -499,7 +499,7 @@
 
     .sub-header {
       height: $sub-header-height;
-      background: $sub-header-bg;
+      background: $color-white;
       padding: $sub-header-padding;
       border-bottom: $sub-header-border-bottom;
       @include box-shadow($sub-header-shadow);

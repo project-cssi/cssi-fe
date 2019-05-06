@@ -55,24 +55,6 @@ class HeaderLinks extends Component {
               <li className="menu-item">
                 <a
                   className="menu-item-link with-icon"
-                  onClick={() => {
-                    navigate('account-settings');
-                    document.dispatchEvent(new MouseEvent('click'));
-                  }}
-                  onKeyPress={() => {
-                    navigate('account-settings');
-                    document.dispatchEvent(new MouseEvent('click'));
-                  }}
-                  role="link"
-                  tabIndex="-1"
-                >
-                  <i className="icon fa fa-sliders" />
-                  Account Settings
-                </a>
-              </li>
-              <li className="menu-item">
-                <a
-                  className="menu-item-link with-icon"
                   onClick={this.handleUserSignOut}
                   onKeyPress={this.handleUserSignOut}
                   role="link"
