@@ -67,8 +67,10 @@ Once the dev server is fired up, it'll automatically open up a new tab. If not, 
   - [Building the app](#building-the-up)
   - [Releases](#releases)
   - [Deployment](#deployment)
+    - [AWS](#aws)
 - [Linting](#linting)
 - [Built With](#built-with)
+- [Changelog](#changelog)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
 - [License](#license)
@@ -147,7 +149,7 @@ The dev server will be opened in a new tab and usually on http://localhost:3000 
 
 # Configuration
 
-Have a look in the [.env.sample](./.env.sample) file for the structure of the [.env]() file.
+Have a look in the [.env.sample](./.env.sample) file for the structure of the `.env]` file.
 
 # Styling
 
@@ -214,9 +216,13 @@ npm run lint
 <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" title="Bootstrap"><img  src="./docs/technologies/boostrap.png" alt="bootstrap" height="30" /></a>&nbsp;&nbsp;
 <a href="https://jquery.com/" title="Jquery"><img src="./docs/technologies/jquery.png" alt="jquery" height="30" /></a>&nbsp;&nbsp;
 
+# Changelog
+
+Please refer [CHANGELOG.md](CHANGELOG.md) to learn about the latest improvements, breaking changes and bug fixes.
+
 # Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) to learn about git commit standard that we follow and make sure to use the correct scope defined in the document when commiting. The branch naming convention can also be found there.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for contributing guidelines and to learn about our code of conduct.
 
 # Contributors
 
@@ -224,7 +230,10 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) to learn about git commit standar
 <!-- prettier-ignore -->
 | [<img src="https://avatars3.githubusercontent.com/u/25959096?v=4" width="80px;" alt="Brion Mario"/><br /><sub><b>Brion Mario</b></sub>](http://www.brionmario.com/)<br />[💻](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Code") [📖](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Documentation") [🐛](https://github.com/project-cssi/cssi-frontend/issues?q=author%3Abrionmario "Bug reports") [⚠️](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Tests") |
 | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 # License
 
