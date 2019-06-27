@@ -222,9 +222,8 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) to learn about git commit standar
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/25959096?v=4" width="80px;"/><br /><sub><b>Brion Mario</b></sub>](http://www.brionmario.com/)<br />|
+| [<img src="https://avatars3.githubusercontent.com/u/25959096?v=4" width="80px;" alt="Brion Mario"/><br /><sub><b>Brion Mario</b></sub>](http://www.brionmario.com/)<br />[💻](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Code") [📖](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Documentation") [🐛](https://github.com/project-cssi/cssi-frontend/issues?q=author%3Abrionmario "Bug reports") [⚠️](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Tests") |
 | :---: |
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 # License
