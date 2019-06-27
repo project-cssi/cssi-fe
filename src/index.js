@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { RootRoutes } from './routes';
 import store from './redux/store';
-import './assets/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './assets/sass/cssi-dashboard.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
