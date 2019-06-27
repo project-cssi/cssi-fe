@@ -149,7 +149,7 @@ The dev server will be opened in a new tab and usually on http://localhost:3000 
 
 # Configuration
 
-Have a look in the [.env.sample](./.env.sample) file for the structure of the `.env]` file.
+Have a look in the [.env.sample](./.env.sample) file for the structure of the `.env` file.
 
 # Styling
 
