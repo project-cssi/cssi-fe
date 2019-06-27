@@ -53,6 +53,7 @@
     "validator": "^10.3.0"
   },
   "devDependencies": {
+    "all-contributors-cli": "^5.4.0",
     "babel-core": "^6.26.0",
     "redux-devtools-extension": "^2.13.5",
     "sass-lint": "^1.12.1"
@@ -66,6 +67,8 @@
     "latency"
   ],
   "scripts": {
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
