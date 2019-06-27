@@ -1,5 +1,5 @@
 <p align="center">
-    <img style="display:block;text-align:center" src="./docs/logos/cssi-logo-dashboard.svg" alt="logo-text" width="800" />
+    <img style="display:block;text-align:center" src="./docs/logos/cssi-logo-dashboard.svg" alt="logo-text" width="600" />
     <p align="center" style="font-size: 1.2rem;">Front-End for the CSSI Platform</p>
 </p>
 
@@ -11,7 +11,7 @@
   <a href="#contributors">
     <img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="All Contributors" height="18">
   </a>
-<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe.svg?type=shield"/></a>
+  <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe.svg?type=shield"/></a>
   <a href="https://david-dm.org/project-cssi/cssi-fe">
     <img src="https://david-dm.org/project-cssi/cssi-fe/status.svg" alt="dependencies Status" height="18">
   </a>
@@ -27,9 +27,6 @@
 </p>
 
 This repository contains the codebase for the CSSI front end. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) template.
-
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe?ref=badge_large)
 
 # Quick start
 
@@ -241,4 +238,4 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 # License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe?ref=badge_large)
