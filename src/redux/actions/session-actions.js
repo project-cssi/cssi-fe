@@ -15,7 +15,7 @@ import {
   SET_SESSION_STATUS,
   SET_CURRENT_SESSION,
   FETCH_SESSIONS,
-  SET_SELECTED_SESSION
+  SET_SELECTED_SESSION, UPDATE_SESSION
 } from '../types';
 import { API_ENDPOINTS } from '../../api';
 import { HttpInterceptor } from '../../services';
@@ -37,6 +37,20 @@ export const fetchSessions = () => dispatch => {
     });
 };
 
+export const updateSession = id => dispatch => {
+  const endpoint = API_ENDPOINTS.updateSession.format(id);
+  return http
+    .put(endpoint)
+    .then(response => {
+      dispatch({
+        type: UPDATE_SESSION,
+        payload: response.data.data,
+      });
+    })
+    .catch(error => {
+      //console.log('[ERROR]', ' [Sessions, fetchQuestionnaires()]: HTTP GET - Callback Error', error);
+    });
+};
 
 export const initializeSession = data => dispatch => {
   const endpoint = API_ENDPOINTS.initializeSession;

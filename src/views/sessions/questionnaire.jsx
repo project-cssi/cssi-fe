@@ -71,7 +71,7 @@ class Questionnaire extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { selectedQuestionnaire, location } = this.props;
+    const { selectedQuestionnaire, location, actions } = this.props;
 
     const route = qs.parse(location.search);
 
@@ -86,6 +86,7 @@ class Questionnaire extends Component {
           navigate('emotions', searchParams);
         } else if (route.type === 'post') {
           let searchParams = '?session_id=' + route.session_id;
+          actions.sessions.updateSession(route.session_id);
           navigate('sessions', searchParams);
         }
       }

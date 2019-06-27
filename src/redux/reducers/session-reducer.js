@@ -17,7 +17,8 @@ import {
   SET_SESSION_STATUS,
   SET_CURRENT_SESSION,
   FETCH_SESSIONS,
-  SET_SELECTED_SESSION
+  SET_SELECTED_SESSION,
+  UPDATE_SESSION
 } from '../types';
 
 const initialState = {
@@ -55,6 +56,12 @@ export function sessionReducer(state = initialState, action) {
         isSessionInitialized: true,
         sessionTemp: {},
         currentSession: action.payload,
+      };
+    case UPDATE_SESSION:
+      return {
+        ...state,
+        sessions: [..._.filter(state.sessions, session => session.id !== action.payload.id),
+          action.payload],
       };
     case SET_SELECTED_SESSION:
       return {

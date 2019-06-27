@@ -24,6 +24,7 @@ const API_ENDPOINTS = {
   updateQuestionnaire: `${BASE_API}/questionnaires/{}/post`,
   createQuestionnaire: `${BASE_API}/questionnaires/`,
   fetchSessions: `${BASE_API}/sessions/`,
+  updateSession: `${BASE_API}/sessions/{}`,
   initializeSession: `${BASE_API}/sessions/`,
   getSessionInfo: `${BASE_API}/sessions/{}`
 };
