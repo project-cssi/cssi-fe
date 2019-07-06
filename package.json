@@ -4,7 +4,7 @@
   "description": "React front-end for the CSSI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brionmario/cssi.git"
+    "url": "https://github.com/project-cssi/cssi-fe.git"
   },
   "license": "MIT",
   "private": true,
