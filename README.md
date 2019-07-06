@@ -8,8 +8,8 @@
   <a href="https://travis-ci.org/project-cssi/cssi-fe">
     <img src="https://travis-ci.org/project-cssi/cssi-fe.svg?branch=master" alt="Build Status" height="18">
   </a>
-  <a href="#contributors">
-    <img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="All Contributors" height="18">
+  <a href="https://github.com/project-cssi/cssi-fe/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/project-cssi/cssi-fe.svg?logo=github" alt="Contributors Count" height="18">
   </a>
   <a href="LICENSE.md">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" height="18">
@@ -236,14 +236,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for contributing guidelines and t
 
 # Contributors
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/25959096?v=4" width="80px;" alt="Brion Mario"/><br /><sub><b>Brion Mario</b></sub>](http://www.brionmario.com/)<br />[💻](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Code") [📖](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Documentation") [🐛](https://github.com/project-cssi/cssi-frontend/issues?q=author%3Abrionmario "Bug reports") [⚠️](https://github.com/project-cssi/cssi-frontend/commits?author=brionmario "Tests") |
-| :---: |
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+<a href="https://github.com/project-cssi/cssi-fe/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=project-cssi/cssi-fe" />
+</a>
 
 # License
 
