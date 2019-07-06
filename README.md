@@ -1,29 +1,38 @@
-<p align="center">
+<p align="left">
     <img style="display:block;text-align:center" src="./docs/logos/cssi-logo-dashboard.svg" alt="logo-text" width="600" />
-    <p align="center" style="font-size: 1.2rem;">Front-End for the CSSI Platform</p>
+    <p style="font-size: 1.2rem;">Front-End for the CSSI Platform</p>
 </p>
 
 <!-- Badges -->
-<p align="center">
+<p align="left">
   <a href="https://travis-ci.org/project-cssi/cssi-fe">
     <img src="https://travis-ci.org/project-cssi/cssi-fe.svg?branch=master" alt="Build Status" height="18">
   </a>
   <a href="#contributors">
     <img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="All Contributors" height="18">
   </a>
-  <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe.svg?type=shield"/></a>
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" height="18">
+  </a>
   <a href="https://david-dm.org/project-cssi/cssi-fe">
     <img src="https://david-dm.org/project-cssi/cssi-fe/status.svg" alt="dependencies Status" height="18">
   </a>
   <a href="https://david-dm.org/project-cssi/cssi-fe?type=dev">
     <img src="https://david-dm.org/project-cssi/cssi-fe/dev-status.svg" alt="devDependencies Status" height="18">
-   </a>
-  <a href="LICENSE.md">
-    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" height="18">
   </a>
+  <a href="https://github.com/project-cssi/cssi-fe/stargazers">
+    <img src="https://img.shields.io/github/stars/project-cssi/cssi-fe.svg?logo=github" alt="Github stars" height="18">
+  </a>
+  <a href="https://github.com/project-cssi/cssi-fe/network/members">
+    <img src="https://img.shields.io/github/forks/project-cssi/cssi-fe.svg?logo=github" alt="Github forks" height="18">
+  </a>
+  <a href="https://twitter.com/brion_mario">
+    <img src="https://img.shields.io/twitter/follow/brion_mario.svg?label=brion_mario&style=flat&logo=twitter&logoColor=4FADFF" alt="Twitter" height="18">
+  </a>
+  <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fproject-cssi%2Fcssi-fe.svg?type=shield"/></a>
   <a href="https://codecov.io/gh/project-cssi/cssi-fe">
-  <img src="https://codecov.io/gh/project-cssi/cssi-fe/branch/master/graph/badge.svg" />
-</a>
+    <img src="https://codecov.io/gh/project-cssi/cssi-fe/branch/master/graph/badge.svg" />
+  </a>
 </p>
 
 This repository contains the codebase for the CSSI front end. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) template.
