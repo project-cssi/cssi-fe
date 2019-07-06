@@ -10,6 +10,7 @@ matrix:
 before_install:
   - npm install -g npm@5
   - npm install -g codecov
+  - npm rebuild node-sass
 install:
   - npm install
 script:
