@@ -1,4 +1,16 @@
-# Releases
+# Release Instructions
+
+This document contains all the necessary instructions to release the
+project and to generate the corresponding changelog.
+
+## Versioning
+
+We follow the [PEP0440](https://www.python.org/dev/peps/pep-0440/)
+versioning standard when releasing `cssi` library. Please read the
+[versioning](./VERSIONING.md) guidelines document carefully before
+attempting any release related tasks.
+
+## Creating a Release
 
 Always follow the semantic versioning guidelines when releasing the application. The following generic script can be used to easily make different releases/pre-releases.
 

@@ -1,0 +1,15 @@
+sudo: false
+language: node_js
+node_js:
+  - 'node'
+cache:
+  directories:
+    - node_modules
+matrix:
+  fast_finish: true
+before_install:
+  - npm install -g npm@5
+install:
+  - npm install
+script:
+  - CI=false npm run build
