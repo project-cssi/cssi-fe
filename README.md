@@ -1,5 +1,5 @@
 <p align="left">
-    <img style="display:block;text-align:center" src="./docs/logos/cssi-logo-dashboard.svg" alt="logo-text" width="600" />
+    <img style="display:block;text-align:center" src="./docs/logo/cssi-logo-dashboard.svg" alt="logo-text" width="600" />
     <p style="font-size: 1.2rem;">Front-End for the CSSI Platform</p>
 </p>
 
@@ -193,7 +193,7 @@ npm run build
 
 ## Releases
 
-Read the instructions in the [RELEASE.md](./docs/RELEASE.md) file for a full list of realease strategies.
+Please read the [RELEASES.md](./docs/RELEASES.md) guideline to learn about the process for releasing the project.
 
 ## Deployment
 
@@ -217,14 +217,14 @@ npm run lint
 
 # Built With
 
-<a href="https://reactjs.org/" title="React"><img src="./docs/technologies/react.png" alt="react" height="30" /></a>&nbsp;&nbsp;
-<a href="https://redux.js.org/" title="Redux"><img src="./docs/technologies/redux.png" alt="redux" height="30" /></a>&nbsp;&nbsp;
-<a href="https://lodash.com/" title="Lodash"><img src="./docs/technologies/lodash.png" alt="lodash" height="30" /></a>&nbsp;&nbsp;
-<a href="https://webpack.js.org/" title="Webpack"><img src="./docs/technologies/webpack.png" alt="webpack" height="30" /></a>&nbsp;&nbsp;
-<a href="https://www.npmjs.com/" title="npm"><img src="./docs/technologies/npm.png" alt="npm" height="30" /></a>&nbsp;&nbsp;
-<a href="https://sass-lang.com/" title="Sass"><img src="./docs/technologies/sass.png" alt="sass" height="30" /></a>&nbsp;&nbsp;
-<a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" title="Bootstrap"><img  src="./docs/technologies/boostrap.png" alt="bootstrap" height="30" /></a>&nbsp;&nbsp;
-<a href="https://jquery.com/" title="Jquery"><img src="./docs/technologies/jquery.png" alt="jquery" height="30" /></a>&nbsp;&nbsp;
+<a href="https://reactjs.org/" title="React"><img src="./docs/readme-resources/technologies/react.png" alt="react" height="30" /></a>&nbsp;&nbsp;
+<a href="https://redux.js.org/" title="Redux"><img src="./docs/readme-resources/technologies/redux.png" alt="redux" height="30" /></a>&nbsp;&nbsp;
+<a href="https://lodash.com/" title="Lodash"><img src="./docs/readme-resources/technologies/lodash.png" alt="lodash" height="30" /></a>&nbsp;&nbsp;
+<a href="https://webpack.js.org/" title="Webpack"><img src="./docs/readme-resources/technologies/webpack.png" alt="webpack" height="30" /></a>&nbsp;&nbsp;
+<a href="https://www.npmjs.com/" title="npm"><img src="./docs/readme-resources/technologies/npm.png" alt="npm" height="30" /></a>&nbsp;&nbsp;
+<a href="https://sass-lang.com/" title="Sass"><img src="./docs/readme-resources/technologies/sass.png" alt="sass" height="30" /></a>&nbsp;&nbsp;
+<a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" title="Bootstrap"><img  src="./docs/readme-resources/technologies/boostrap.png" alt="bootstrap" height="30" /></a>&nbsp;&nbsp;
+<a href="https://jquery.com/" title="Jquery"><img src="./docs/readme-resources/technologies/jquery.png" alt="jquery" height="30" /></a>&nbsp;&nbsp;
 
 # Changelog
 
