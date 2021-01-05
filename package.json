@@ -12,7 +12,7 @@
   "sasslintConfig": "./sass-lint.yml",
   "dependencies": {
     "@types/react": "^16.3.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.6",
     "datatables.net-bs": "^1.10.16",
