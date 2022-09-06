@@ -14,12 +14,6 @@
   <a href="LICENSE.md">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" height="18">
   </a>
-  <a href="https://david-dm.org/project-cssi/cssi-fe">
-    <img src="https://david-dm.org/project-cssi/cssi-fe/status.svg" alt="dependencies Status" height="18">
-  </a>
-  <a href="https://david-dm.org/project-cssi/cssi-fe?type=dev">
-    <img src="https://david-dm.org/project-cssi/cssi-fe/dev-status.svg" alt="devDependencies Status" height="18">
-  </a>
   <a href="https://github.com/project-cssi/cssi-fe/stargazers">
     <img src="https://img.shields.io/github/stars/project-cssi/cssi-fe.svg?logo=github" alt="Github stars" height="18">
   </a>
